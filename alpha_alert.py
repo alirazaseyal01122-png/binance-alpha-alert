@@ -1,11 +1,12 @@
-
 import os
+import json
 import requests
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 ALPHA_URL = "https://www.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/cex/alpha/all/token/list"
+DATA_FILE = "alpha_tokens.json"
 
 
 def send_telegram(message):
@@ -35,18 +36,57 @@ def get_alpha_tokens():
     return result.get("data", [])
 
 
+def load_old_tokens():
+    if not os.path.exists(DATA_FILE):
+        return {}
+
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_tokens(tokens):
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(tokens, f, ensure_ascii=False, indent=2)
+
+
 tokens = get_alpha_tokens()
 
-print(f"Binance Alpha tokens found: {len(tokens)}")
+old_tokens = load_old_tokens()
 
-for token in tokens[:10]:
-    print(
-        token.get("alphaId"),
-        token.get("chainName"),
-        token.get("contractAddress")
+current_tokens = {}
+
+for token in tokens:
+    alpha_id = token.get("alphaId")
+
+    if alpha_id:
+        current_tokens[alpha_id] = token
+
+
+new_tokens = [
+    token
+    for alpha_id, token in current_tokens.items()
+    if alpha_id not in old_tokens
+]
+
+
+print("Current Alpha tokens:", len(current_tokens))
+print("New Alpha tokens:", len(new_tokens))
+
+
+for token in new_tokens:
+
+    message = (
+        "🚨 NEW BINANCE ALPHA TOKEN\n\n"
+        f"Token: {token.get('symbol', 'N/A')}\n"
+        f"Alpha ID: {token.get('alphaId', 'N/A')}\n"
+        f"Network: {token.get('chainName', 'N/A')}\n"
+        f"Contract: {token.get('contractAddress', 'N/A')}\n"
+        f"Listing Time: {token.get('listingTime', 'N/A')}"
     )
 
-send_telegram(
-    f"✅ Binance Alpha connection successful!\n\n"
-    f"Current Alpha tokens detected: {len(tokens)}"
-    )
+    send_telegram(message)
+
+
+save_tokens(current_tokens)
+
+print("Alpha token database updated.")
