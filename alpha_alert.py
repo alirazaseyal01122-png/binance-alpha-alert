@@ -2,29 +2,51 @@
 import os
 import requests
 
-TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-if not TOKEN:
-    raise Exception("TELEGRAM_BOT_TOKEN نہیں ملا")
+ALPHA_URL = "https://www.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/cex/alpha/all/token/list"
 
-if not CHAT_ID:
-    raise Exception("TELEGRAM_CHAT_ID نہیں ملا")
 
-url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+def send_telegram(message):
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-response = requests.post(
-    url,
-    data={
-        "chat_id": CHAT_ID,
-        "text": "✅ TEST SUCCESS - Binance Alpha Alert Bot connected!"
-    }
-)
+    response = requests.post(
+        url,
+        data={
+            "chat_id": CHAT_ID,
+            "text": message
+        },
+        timeout=20
+    )
 
-print(response.status_code)
-print(response.text)
+    response.raise_for_status()
 
-if response.status_code != 200:
-    raise Exception("Telegram message failed")
 
-print("Telegram message sent successfully")
+def get_alpha_tokens():
+    response = requests.get(ALPHA_URL, timeout=20)
+    response.raise_for_status()
+
+    result = response.json()
+
+    if result.get("code") != "000000":
+        raise Exception(f"Binance API error: {result}")
+
+    return result.get("data", [])
+
+
+tokens = get_alpha_tokens()
+
+print(f"Binance Alpha tokens found: {len(tokens)}")
+
+for token in tokens[:10]:
+    print(
+        token.get("alphaId"),
+        token.get("chainName"),
+        token.get("contractAddress")
+    )
+
+send_telegram(
+    f"✅ Binance Alpha connection successful!\n\n"
+    f"Current Alpha tokens detected: {len(tokens)}"
+    )
