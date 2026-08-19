@@ -1,10 +1,12 @@
-name: Telegram Bot Test
+name: Binance Alpha Monitor
 
 on:
+  schedule:
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
-  test:
+  monitor:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +21,7 @@ jobs:
       - name: Install requests
         run: pip install requests
 
-      - name: Run Telegram test
+      - name: Run Binance Alpha Monitor
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
