@@ -1,4 +1,4 @@
-name: Binance Alpha Monitor
+name: Binance Alpha + Wallet Monitor
 
 on:
   schedule:
@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
@@ -26,59 +27,40 @@ jobs:
       - name: Install requests
         run: pip install requests
 
+      # =========================
+      # BINANCE ALPHA MONITOR
+      # =========================
+
       - name: Run Binance Alpha Monitor
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          MANUAL_TEST: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
-          if [ "$MANUAL_TEST" = "true" ]; then
-            python -c "
-          import os
-          import requests
-          from datetime import datetime
-          from zoneinfo import ZoneInfo
+          python alpha_alert.py
 
-          token = os.environ['TELEGRAM_BOT_TOKEN']
-          chat_id = os.environ['TELEGRAM_CHAT_ID']
+      # =========================
+      # BINANCE WALLET / WEB3
+      # MONITOR
+      # =========================
 
-          url = f'https://api.telegram.org/bot{token}/sendMessage'
-
-          now = datetime.now(ZoneInfo('Asia/Karachi'))
-          time_text = now.strftime('%d-%m-%Y %I:%M:%S %p PKT')
-
-          response = requests.get(
-              'https://www.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/cex/alpha/all/token/list',
-              timeout=30
-          )
-
-          data = response.json().get('data', [])
-
-          message = (
-              '🧪 BINANCE ALPHA MONITOR TEST\n\n'
-              '✅ GitHub: Connected\n'
-              '✅ Binance Alpha API: Connected\n'
-              f'📊 Alpha Tokens: {len(data)}\n'
-              f'🇵🇰 Pakistan Time: {time_text}\n'
-              '✅ Telegram: Connected'
-          )
-
-          requests.post(
-              url,
-              data={'chat_id': chat_id, 'text': message},
-              timeout=30
-          ).raise_for_status()
-
-          print(message)
-            "
-          else
-            python alpha_alert.py
-          fi
-
-      - name: Save Alpha token state
+      - name: Run Binance Wallet Monitor
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          git config user.name "Binance Alpha Bot"
-          git config user.email "binance-alpha-bot@users.noreply.github.com"
-          git add alpha_tokens.json
-          git diff --cached --quiet || git commit -m "Update Alpha token state"
+          python wallet_token_alert.py
+
+      # =========================
+      # SAVE DATABASES
+      # =========================
+
+      - name: Save token states
+        run: |
+          git config user.name "Binance Web3 Monitor"
+          git config user.email "binance-web3-bot@users.noreply.github.com"
+
+          git add alpha_tokens.json wallet_tokens.json
+
+          git diff --cached --quiet || git commit -m "Update Binance token states"
+
           git push
