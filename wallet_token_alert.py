@@ -1,3 +1,4 @@
+```python
 import os
 import json
 import requests
@@ -13,9 +14,18 @@ BINANCE_WEB3_URL = (
     "unified/rank/list/ai"
 )
 
+# Binance Web3 Dynamic Token Info
+BINANCE_DYNAMIC_URL = (
+    "https://web3.binance.com/bapi/defi/v4/public/"
+    "wallet-direct/buw/wallet/market/token/dynamic/info"
+)
+
 STATE_FILE = "wallet_tokens.json"
 
-# Binance Web3 currently documented chains
+# صرف 500 ملین سے کم Total Supply والے ٹوکن
+MAX_SUPPLY = 500_000_000
+
+# Binance Web3 supported chains
 CHAINS = {
     "56": "BSC",
     "1": "Ethereum",
@@ -40,13 +50,7 @@ def get_wallet_tokens(chain_id):
         "orderAsc": False,
         "page": 1,
         "size": 200,
-
-        # نئے / تازہ ٹوکنز کو ترجیح
-        "launchTimeMin": 0,
-
-        # بہت کم liquidity والے spam tokens کو
-        # ابھی filter نہیں کر رہے
-        # تاکہ نئے tokens miss نہ ہوں
+        "launchTimeMin": 0
     }
 
     response = requests.post(
@@ -68,6 +72,37 @@ def get_wallet_tokens(chain_id):
     data = result.get("data") or {}
 
     return data.get("tokens", [])
+
+
+def get_token_dynamic(chain_id, contract_address):
+
+    headers = {
+        "Accept-Encoding": "identity",
+        "User-Agent": "binance-web3/1.1"
+    }
+
+    params = {
+        "chainId": chain_id,
+        "contractAddress": contract_address
+    }
+
+    response = requests.get(
+        BINANCE_DYNAMIC_URL,
+        headers=headers,
+        params=params,
+        timeout=30
+    )
+
+    response.raise_for_status()
+
+    result = response.json()
+
+    if result.get("code") != "000000":
+        raise Exception(
+            f"Dynamic API Error: {result}"
+        )
+
+    return result.get("data") or {}
 
 
 def send_telegram(message):
@@ -175,6 +210,45 @@ def safe_number(value):
         return str(value)
 
 
+def safe_supply(value):
+
+    if value is None:
+        return None
+
+    try:
+
+        return float(value)
+
+    except Exception:
+
+        return None
+
+
+def format_supply(value):
+
+    if value is None:
+        return "N/A"
+
+    try:
+
+        number = float(value)
+
+        if number >= 1_000_000_000:
+            return f"{number / 1_000_000_000:.2f}B"
+
+        if number >= 1_000_000:
+            return f"{number / 1_000_000:.2f}M"
+
+        if number >= 1_000:
+            return f"{number / 1_000:.2f}K"
+
+        return f"{number:.2f}"
+
+    except Exception:
+
+        return str(value)
+
+
 def main():
 
     if not BOT_TOKEN:
@@ -217,7 +291,7 @@ def main():
                 if not contract:
                     continue
 
-                # Chain + contract = unique ID
+                # Chain + Contract = Unique ID
                 token_key = (
                     f"{chain_id}:"
                     f"{contract.lower()}"
@@ -284,9 +358,11 @@ def main():
             f"{len(CHAINS)}\n"
             f"🪙 Tokens recorded: "
             f"{len(current_tokens)}\n\n"
+            "🟢 Supply Filter: BELOW 500M\n\n"
             "🚨 From now on, Telegram alerts "
-            "will be sent when a NEW Binance "
-            "Web3 token is detected."
+            "will be sent only for NEW Web3 "
+            "tokens with Total Supply below "
+            "500 million."
         )
 
         return
@@ -305,7 +381,7 @@ def main():
         len(new_tokens)
     )
 
-    # Telegram alerts
+    # صرف نئے ٹوکنز کی Supply چیک کریں
     for token in new_tokens:
 
         symbol = token.get(
@@ -318,75 +394,154 @@ def main():
             "N/A"
         )
 
+        chain_id = token.get(
+            "chainId"
+        )
+
         contract = token.get(
             "contractAddress",
             "N/A"
         )
 
-        price = safe_number(
-            token.get("price")
-        )
-
-        market_cap = safe_number(
-            token.get("marketCap")
-        )
-
-        liquidity = safe_number(
-            token.get("liquidity")
-        )
-
-        volume_24h = safe_number(
-            token.get("volume24h")
-        )
-
-        holders = token.get(
-            "holders",
-            "N/A"
-        )
-
-        launch_time = pakistan_time(
-            token.get("launchTime")
-        )
-
-        message = (
-            "🚨 NEW BINANCE WEB3 TOKEN\n\n"
-
-            f"🪙 Symbol: {symbol}\n"
-            f"⛓️ Chain: {chain_name}\n\n"
-
-            f"💵 Price: {price}\n"
-            f"💧 Liquidity: {liquidity}\n"
-            f"📊 Market Cap: {market_cap}\n"
-            f"📈 24h Volume: {volume_24h}\n"
-            f"👥 Holders: {holders}\n\n"
-
-            f"⏰ Launch Time:\n"
-            f"{launch_time}\n\n"
-
-            f"📜 Contract:\n"
-            f"{contract}\n\n"
-
-            "⚡ Binance Web3 Wallet Monitor"
-        )
-
         try:
 
-            send_telegram(message)
-
-            print(
-                "Telegram alert sent:",
-                symbol,
-                chain_name,
+            dynamic = get_token_dynamic(
+                chain_id,
                 contract
             )
+
+            total_supply = safe_supply(
+                dynamic.get("totalSupply")
+            )
+
+            circulating_supply = safe_supply(
+                dynamic.get("circulatingSupply")
+            )
+
+            # Supply معلوم نہ ہو تو الرٹ نہیں
+            if total_supply is None:
+
+                print(
+                    "Supply unavailable - skipped:",
+                    symbol,
+                    chain_name
+                )
+
+                continue
+
+            print(
+                f"{symbol} Supply:",
+                total_supply
+            )
+
+            # 500 Million یا زیادہ = SKIP
+            if total_supply >= MAX_SUPPLY:
+
+                print(
+                    "Supply filter rejected:",
+                    symbol,
+                    format_supply(total_supply)
+                )
+
+                continue
+
+            # Market data
+            price = safe_number(
+                dynamic.get(
+                    "price",
+                    token.get("price")
+                )
+            )
+
+            market_cap = safe_number(
+                dynamic.get(
+                    "marketCap",
+                    token.get("marketCap")
+                )
+            )
+
+            liquidity = safe_number(
+                dynamic.get(
+                    "liquidity",
+                    token.get("liquidity")
+                )
+            )
+
+            volume_24h = safe_number(
+                dynamic.get(
+                    "volume24h",
+                    token.get("volume24h")
+                )
+            )
+
+            holders = dynamic.get(
+                "holders",
+                token.get("holders", "N/A")
+            )
+
+            launch_time = pakistan_time(
+                dynamic.get(
+                    "launchTime",
+                    token.get("launchTime")
+                )
+            )
+
+            message = (
+                "🟢 NEW BINANCE WEB3 TOKEN\n\n"
+
+                f"🪙 Symbol: {symbol}\n"
+                f"⛓️ Chain: {chain_name}\n\n"
+
+                f"📦 Total Supply: "
+                f"{format_supply(total_supply)}\n"
+
+                f"🔄 Circulating Supply: "
+                f"{format_supply(circulating_supply)}\n\n"
+
+                f"💵 Price: {price}\n"
+                f"💧 Liquidity: {liquidity}\n"
+                f"📊 Market Cap: {market_cap}\n"
+                f"📈 24h Volume: {volume_24h}\n"
+                f"👥 Holders: {holders}\n\n"
+
+                f"⏰ Launch Time:\n"
+                f"{launch_time}\n\n"
+
+                f"📜 Contract:\n"
+                f"{contract}\n\n"
+
+                "🟢 Supply < 500M\n"
+                "⚡ Binance Web3 Wallet Monitor"
+            )
+
+            try:
+
+                send_telegram(message)
+
+                print(
+                    "Telegram alert sent:",
+                    symbol,
+                    chain_name,
+                    contract
+                )
+
+            except Exception as e:
+
+                print(
+                    "Telegram error:",
+                    e
+                )
 
         except Exception as e:
 
             print(
-                "Telegram error:",
+                "Supply check error:",
+                symbol,
+                chain_name,
                 e
             )
 
+    # نئی فہرست محفوظ کریں
     save_tokens(current_tokens)
 
     print(
@@ -396,3 +551,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
