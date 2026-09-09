@@ -1,4 +1,3 @@
-```python
 import os
 import json
 import requests
@@ -25,7 +24,7 @@ STATE_FILE = "wallet_tokens.json"
 # صرف 500 ملین سے کم Total Supply والے ٹوکن
 MAX_SUPPLY = 500_000_000
 
-# Binance Web3 supported chains
+# Binance Web3 chains
 CHAINS = {
     "56": "BSC",
     "1": "Ethereum",
@@ -78,7 +77,7 @@ def get_token_dynamic(chain_id, contract_address):
 
     headers = {
         "Accept-Encoding": "identity",
-        "User-Agent": "binance-web3/1.1"
+        "User-Agent": "binance-web3/3.0"
     }
 
     params = {
@@ -99,7 +98,7 @@ def get_token_dynamic(chain_id, contract_address):
 
     if result.get("code") != "000000":
         raise Exception(
-            f"Dynamic API Error: {result}"
+            f"Binance Dynamic API Error: {result}"
         )
 
     return result.get("data") or {}
@@ -167,8 +166,14 @@ def pakistan_time(timestamp):
 
     try:
 
+        timestamp = float(timestamp)
+
+        # اگر timestamp seconds میں ہو
+        if timestamp < 10_000_000_000:
+            timestamp = timestamp * 1000
+
         utc_time = datetime.fromtimestamp(
-            int(timestamp) / 1000,
+            timestamp / 1000,
             tz=timezone.utc
         )
 
@@ -217,6 +222,9 @@ def safe_supply(value):
 
     try:
 
+        if isinstance(value, str):
+            value = value.replace(",", "").strip()
+
         return float(value)
 
     except Exception:
@@ -247,6 +255,18 @@ def format_supply(value):
     except Exception:
 
         return str(value)
+
+
+def get_value(data, *keys):
+
+    for key in keys:
+
+        value = data.get(key)
+
+        if value is not None:
+            return value
+
+    return None
 
 
 def main():
@@ -291,7 +311,6 @@ def main():
                 if not contract:
                     continue
 
-                # Chain + Contract = Unique ID
                 token_key = (
                     f"{chain_id}:"
                     f"{contract.lower()}"
@@ -381,7 +400,7 @@ def main():
         len(new_tokens)
     )
 
-    # صرف نئے ٹوکنز کی Supply چیک کریں
+    # نئے tokens کی Supply چیک کریں
     for token in new_tokens:
 
         symbol = token.get(
@@ -411,14 +430,29 @@ def main():
             )
 
             total_supply = safe_supply(
-                dynamic.get("totalSupply")
+                get_value(
+                    dynamic,
+                    "totalSupply",
+                    "total_supply"
+                )
             )
 
             circulating_supply = safe_supply(
-                dynamic.get("circulatingSupply")
+                get_value(
+                    dynamic,
+                    "circulatingSupply",
+                    "circulating_supply"
+                )
             )
 
-            # Supply معلوم نہ ہو تو الرٹ نہیں
+            print(
+                f"{symbol} | "
+                f"{chain_name} | "
+                f"Total Supply: "
+                f"{total_supply}"
+            )
+
+            # Supply نہ ملے تو الرٹ نہیں
             if total_supply is None:
 
                 print(
@@ -428,11 +462,6 @@ def main():
                 )
 
                 continue
-
-            print(
-                f"{symbol} Supply:",
-                total_supply
-            )
 
             # 500 Million یا زیادہ = SKIP
             if total_supply >= MAX_SUPPLY:
@@ -445,45 +474,65 @@ def main():
 
                 continue
 
-            # Market data
             price = safe_number(
-                dynamic.get(
-                    "price",
-                    token.get("price")
+                get_value(
+                    dynamic,
+                    "price"
                 )
+                or token.get("price")
             )
 
             market_cap = safe_number(
-                dynamic.get(
+                get_value(
+                    dynamic,
                     "marketCap",
-                    token.get("marketCap")
+                    "market_cap"
                 )
+                or token.get("marketCap")
             )
 
             liquidity = safe_number(
-                dynamic.get(
-                    "liquidity",
-                    token.get("liquidity")
+                get_value(
+                    dynamic,
+                    "liquidity"
                 )
+                or token.get("liquidity")
             )
 
             volume_24h = safe_number(
-                dynamic.get(
+                get_value(
+                    dynamic,
                     "volume24h",
-                    token.get("volume24h")
+                    "volume_24h"
                 )
+                or token.get("volume24h")
             )
 
-            holders = dynamic.get(
+            holders = get_value(
+                dynamic,
                 "holders",
-                token.get("holders", "N/A")
+                "holderCount"
             )
+
+            if holders is None:
+                holders = token.get(
+                    "holders",
+                    "N/A"
+                )
+
+            launch_time_value = get_value(
+                dynamic,
+                "launchTime",
+                "launch_time"
+            )
+
+            if launch_time_value is None:
+                launch_time_value = token.get(
+                    "launchTime"
+                )
 
             launch_time = pakistan_time(
-                dynamic.get(
-                    "launchTime",
-                    token.get("launchTime")
-                )
+                launch_time_value
             )
 
             message = (
@@ -541,7 +590,7 @@ def main():
                 e
             )
 
-    # نئی فہرست محفوظ کریں
+    # Database update
     save_tokens(current_tokens)
 
     print(
@@ -551,5 +600,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-```
-
