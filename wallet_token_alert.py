@@ -4,8 +4,18 @@ import requests
 from datetime import datetime, timezone, timedelta
 
 
+# =========================================================
+# TELEGRAM SETTINGS
+# =========================================================
+
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+GITHUB_EVENT_NAME = os.getenv("GITHUB_EVENT_NAME", "")
+
+
+# =========================================================
+# BINANCE WEB3 API
+# =========================================================
 
 BINANCE_WEB3_URL = (
     "https://web3.binance.com/bapi/defi/v1/public/"
@@ -25,15 +35,21 @@ STATE_FILE = "wallet_tokens.json"
 # FILTERS
 # =========================================================
 
-MAX_SUPPLY = 500_000_000
+# Supply اب FILTER نہیں ہے۔
+# صرف Telegram message میں دکھایا جائے گا۔
+
 MIN_LIQUIDITY = 100_000
 MIN_MARKET_CAP = 500_000
 MIN_HOLDERS = 100
 MIN_VOLUME_24H = 50_000
 
-# صرف گزشتہ 24 گھنٹوں میں لانچ ہونے والے ٹوکن
+# صرف گزشتہ 24 گھنٹوں میں launch ہونے والے tokens
 MAX_TOKEN_AGE_HOURS = 24
 
+
+# =========================================================
+# CHAINS
+# =========================================================
 
 CHAINS = {
     "56": "BSC",
@@ -41,6 +57,83 @@ CHAINS = {
     "8453": "Base",
     "CT_501": "Solana"
 }
+
+
+# =========================================================
+# TELEGRAM SEND
+# =========================================================
+
+def send_telegram(message):
+
+    if not BOT_TOKEN:
+        raise Exception("TELEGRAM_BOT_TOKEN missing")
+
+    if not CHAT_ID:
+        raise Exception("TELEGRAM_CHAT_ID missing")
+
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+
+    response = requests.post(
+        url,
+        data={
+            "chat_id": CHAT_ID,
+            "text": message
+        },
+        timeout=30
+    )
+
+    response.raise_for_status()
+
+    result = response.json()
+
+    if not result.get("ok"):
+        raise Exception(
+            f"Telegram API Error: {result}"
+        )
+
+    return result
+
+
+# =========================================================
+# TELEGRAM TEST
+# =========================================================
+
+def telegram_test():
+
+    print("========================================")
+    print("TELEGRAM TEST STARTED")
+    print("========================================")
+
+    test_message = (
+        "🧪 BINANCE WEB3 MONITOR TEST\n\n"
+        "✅ GitHub Action: Working\n"
+        "✅ Python: Working\n"
+        "✅ Telegram Bot: Connected\n\n"
+        "⚡ Web3 Validator is running.\n"
+        "🕐 Manual workflow test successful."
+    )
+
+    try:
+
+        result = send_telegram(test_message)
+
+        print(
+            "TELEGRAM TEST MESSAGE SENT SUCCESSFULLY"
+        )
+
+        print(
+            "Telegram response:",
+            result
+        )
+
+    except Exception as e:
+
+        print(
+            "TELEGRAM TEST FAILED:",
+            e
+        )
+
+        raise
 
 
 # =========================================================
@@ -123,29 +216,6 @@ def get_token_dynamic(chain_id, contract_address):
 
 
 # =========================================================
-# TELEGRAM
-# =========================================================
-
-def send_telegram(message):
-
-    url = (
-        f"https://api.telegram.org/"
-        f"bot{BOT_TOKEN}/sendMessage"
-    )
-
-    response = requests.post(
-        url,
-        data={
-            "chat_id": CHAT_ID,
-            "text": message
-        },
-        timeout=30
-    )
-
-    response.raise_for_status()
-
-
-# =========================================================
 # DATABASE
 # =========================================================
 
@@ -164,7 +234,12 @@ def load_old_tokens():
 
             return json.load(f)
 
-    except Exception:
+    except Exception as e:
+
+        print(
+            "State file read error:",
+            e
+        )
 
         return {}
 
@@ -190,6 +265,9 @@ def save_tokens(tokens):
 # =========================================================
 
 def get_value(data, *keys):
+
+    if not isinstance(data, dict):
+        return None
 
     for key in keys:
 
@@ -303,7 +381,6 @@ def parse_timestamp(value):
             timestamp = float(value)
 
             if timestamp > 10_000_000_000:
-
                 timestamp /= 1000
 
             return datetime.fromtimestamp(
@@ -360,23 +437,32 @@ def token_age_hours(value):
 def main():
 
     if not BOT_TOKEN:
-
         raise Exception(
             "TELEGRAM_BOT_TOKEN missing"
         )
 
     if not CHAT_ID:
-
         raise Exception(
             "TELEGRAM_CHAT_ID missing"
         )
+
+    # =====================================================
+    # MANUAL RUN TELEGRAM TEST
+    # =====================================================
+
+    if GITHUB_EVENT_NAME == "workflow_dispatch":
+
+        telegram_test()
+
+    # =====================================================
+    # LOAD DATABASE
+    # =====================================================
 
     old_tokens = load_old_tokens()
 
     current_tokens = {}
 
     total_found = 0
-
 
     # =====================================================
     # GET BINANCE WEB3 TOKENS
@@ -435,7 +521,6 @@ def main():
                 f"ERROR {chain_name}: {e}"
             )
 
-
     print(
         "Total tokens received:",
         total_found
@@ -445,7 +530,6 @@ def main():
         "Unique tokens:",
         len(current_tokens)
     )
-
 
     # =====================================================
     # FIRST RUN
@@ -464,16 +548,16 @@ def main():
             f"{len(current_tokens)}\n\n"
             "🔒 Filters enabled:\n"
             "• Launch ≤ 24 hours\n"
-            "• Supply < 500M\n"
             "• Liquidity ≥ $100K\n"
             "• Market Cap ≥ $500K\n"
             "• Holders ≥ 100\n"
             "• 24h Volume ≥ $50K\n\n"
+            "ℹ️ Total Supply is displayed only "
+            "and is NOT used as a filter.\n\n"
             "🚨 Old tokens will NOT be alerted."
         )
 
         return
-
 
     # =====================================================
     # FIND NEW TOKENS
@@ -487,12 +571,10 @@ def main():
 
             new_tokens.append(token)
 
-
     print(
         "New Wallet/Web3 tokens:",
         len(new_tokens)
     )
-
 
     # =====================================================
     # CHECK EACH NEW TOKEN
@@ -518,14 +600,12 @@ def main():
             "contractAddress"
         )
 
-
         try:
 
             dynamic = get_token_dynamic(
                 chain_id,
                 contract
             )
-
 
             # =================================================
             # LAUNCH TIME
@@ -543,11 +623,9 @@ def main():
                     "launchTime"
                 )
 
-
             age = token_age_hours(
                 launch_time
             )
-
 
             print(
                 f"{symbol} | "
@@ -555,9 +633,6 @@ def main():
                 f"Launch: "
                 f"{pakistan_time(launch_time)}"
             )
-
-
-            # Launch time ضروری ہے
 
             if age is None:
 
@@ -568,9 +643,6 @@ def main():
 
                 continue
 
-
-            # مستقبل کی تاریخ
-
             if age < 0:
 
                 print(
@@ -579,9 +651,6 @@ def main():
                 )
 
                 continue
-
-
-            # 24 گھنٹے سے پرانا
 
             if age > MAX_TOKEN_AGE_HOURS:
 
@@ -593,10 +662,11 @@ def main():
 
                 continue
 
-
             # =================================================
             # TOTAL SUPPLY
             # =================================================
+            # صرف DISPLAY کے لیے ہے
+            # کوئی SUPPLY FILTER نہیں
 
             total_supply = safe_number(
                 get_value(
@@ -605,27 +675,6 @@ def main():
                     "total_supply"
                 )
             )
-
-
-            if total_supply is None:
-
-                print(
-                    "SKIPPED: supply unavailable",
-                    symbol
-                )
-
-                continue
-
-
-            if total_supply >= MAX_SUPPLY:
-
-                print(
-                    "SKIPPED: supply too high",
-                    symbol
-                )
-
-                continue
-
 
             # =================================================
             # LIQUIDITY
@@ -638,7 +687,6 @@ def main():
                 )
             )
 
-
             if liquidity is None:
 
                 liquidity = safe_number(
@@ -646,7 +694,6 @@ def main():
                         "liquidity"
                     )
                 )
-
 
             if liquidity is None:
 
@@ -657,7 +704,6 @@ def main():
 
                 continue
 
-
             if liquidity < MIN_LIQUIDITY:
 
                 print(
@@ -666,7 +712,6 @@ def main():
                 )
 
                 continue
-
 
             # =================================================
             # MARKET CAP
@@ -680,7 +725,6 @@ def main():
                 )
             )
 
-
             if market_cap is None:
 
                 market_cap = safe_number(
@@ -688,7 +732,6 @@ def main():
                         "marketCap"
                     )
                 )
-
 
             if market_cap is None:
 
@@ -699,7 +742,6 @@ def main():
 
                 continue
 
-
             if market_cap < MIN_MARKET_CAP:
 
                 print(
@@ -708,7 +750,6 @@ def main():
                 )
 
                 continue
-
 
             # =================================================
             # HOLDERS
@@ -720,18 +761,15 @@ def main():
                 "holderCount"
             )
 
-
             if holders is None:
 
                 holders = token.get(
                     "holders"
                 )
 
-
             holders = safe_number(
                 holders
             )
-
 
             if holders is None:
 
@@ -742,7 +780,6 @@ def main():
 
                 continue
 
-
             if holders < MIN_HOLDERS:
 
                 print(
@@ -751,7 +788,6 @@ def main():
                 )
 
                 continue
-
 
             # =================================================
             # 24H VOLUME
@@ -765,7 +801,6 @@ def main():
                 )
             )
 
-
             if volume_24h is None:
 
                 volume_24h = safe_number(
@@ -773,7 +808,6 @@ def main():
                         "volume24h"
                     )
                 )
-
 
             if volume_24h is None:
 
@@ -784,7 +818,6 @@ def main():
 
                 continue
 
-
             if volume_24h < MIN_VOLUME_24H:
 
                 print(
@@ -793,7 +826,6 @@ def main():
                 )
 
                 continue
-
 
             # =================================================
             # PRICE
@@ -804,13 +836,11 @@ def main():
                 "price"
             )
 
-
             if price is None:
 
                 price = token.get(
                     "price"
                 )
-
 
             # =================================================
             # CIRCULATING SUPPLY
@@ -824,19 +854,13 @@ def main():
                 )
             )
 
-
             # =================================================
-            # FORMAT TIME SEPARATELY
+            # MESSAGE
             # =================================================
 
             launch_time_text = pakistan_time(
                 launch_time
             )
-
-
-            # =================================================
-            # TELEGRAM MESSAGE
-            # =================================================
 
             message_lines = [
 
@@ -882,12 +906,13 @@ def main():
 
                 "",
 
-                "✅ Supply < 500M",
                 "✅ Liquidity ≥ $100K",
                 "✅ Market Cap ≥ $500K",
                 "✅ Holders ≥ 100",
                 "✅ 24h Volume ≥ $50K",
                 "✅ Launch ≤ 24 hours",
+
+                "ℹ️ Supply صرف معلومات کے لیے ہے۔",
 
                 "",
 
@@ -895,11 +920,9 @@ def main():
                 "منافع یا حفاظت کی ضمانت نہیں۔"
             ]
 
-
             message = "\n".join(
                 message_lines
             )
-
 
             # =================================================
             # SEND ALERT
@@ -924,7 +947,6 @@ def main():
                     e
                 )
 
-
         except Exception as e:
 
             print(
@@ -933,7 +955,6 @@ def main():
                 chain_name,
                 e
             )
-
 
     # =====================================================
     # UPDATE DATABASE
