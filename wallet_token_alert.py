@@ -21,8 +21,23 @@ BINANCE_DYNAMIC_URL = (
 
 STATE_FILE = "wallet_tokens.json"
 
-# صرف 500 ملین سے کم Total Supply والے ٹوکن
+# ==============================
+# سخت فلٹرز
+# ==============================
+
 MAX_SUPPLY = 500_000_000
+
+MIN_LIQUIDITY = 100_000
+
+MIN_MARKET_CAP = 500_000
+
+MIN_HOLDERS = 100
+
+MIN_VOLUME_24H = 50_000
+
+# صرف گزشتہ 24 گھنٹوں میں لانچ ہونے والے ٹوکن
+MAX_TOKEN_AGE_HOURS = 24
+
 
 # Binance Web3 chains
 CHAINS = {
@@ -159,62 +174,6 @@ def save_tokens(tokens):
         )
 
 
-def pakistan_time(timestamp):
-
-    if not timestamp:
-        return "N/A"
-
-    try:
-
-        timestamp = float(timestamp)
-
-        # اگر timestamp seconds میں ہو
-        if timestamp < 10_000_000_000:
-            timestamp = timestamp * 1000
-
-        utc_time = datetime.fromtimestamp(
-            timestamp / 1000,
-            tz=timezone.utc
-        )
-
-        pkt = utc_time.astimezone(
-            timezone(timedelta(hours=5))
-        )
-
-        return pkt.strftime(
-            "%d-%m-%Y %I:%M:%S %p PKT"
-        )
-
-    except Exception:
-
-        return str(timestamp)
-
-
-def safe_number(value):
-
-    if value is None:
-        return "N/A"
-
-    try:
-
-        number = float(value)
-
-        if number >= 1_000_000_000:
-            return f"${number / 1_000_000_000:.2f}B"
-
-        if number >= 1_000_000:
-            return f"${number / 1_000_000:.2f}M"
-
-        if number >= 1_000:
-            return f"${number / 1_000:.2f}K"
-
-        return f"${number:.6f}"
-
-    except Exception:
-
-        return str(value)
-
-
 def safe_supply(value):
 
     if value is None:
@@ -257,6 +216,42 @@ def format_supply(value):
         return str(value)
 
 
+def safe_number(value):
+
+    if value is None:
+        return None
+
+    try:
+
+        if isinstance(value, str):
+            value = value.replace(",", "").replace("$", "").strip()
+
+        return float(value)
+
+    except Exception:
+
+        return None
+
+
+def format_money(value):
+
+    number = safe_number(value)
+
+    if number is None:
+        return "N/A"
+
+    if number >= 1_000_000_000:
+        return f"${number / 1_000_000_000:.2f}B"
+
+    if number >= 1_000_000:
+        return f"${number / 1_000_000:.2f}M"
+
+    if number >= 1_000:
+        return f"${number / 1_000:.2f}K"
+
+    return f"${number:.6f}"
+
+
 def get_value(data, *keys):
 
     for key in keys:
@@ -267,6 +262,99 @@ def get_value(data, *keys):
             return value
 
     return None
+
+
+def parse_timestamp(value):
+
+    if value is None:
+        return None
+
+    try:
+
+        if isinstance(value, str):
+            value = value.strip()
+
+            # اگر string numeric ہے
+            if value.replace(".", "", 1).isdigit():
+                value = float(value)
+
+            else:
+                # ISO format
+                text = value.replace("Z", "+00:00")
+
+                dt = datetime.fromisoformat(text)
+
+                if dt.tzinfo is None:
+                    dt = dt.replace(
+                        tzinfo=timezone.utc
+                    )
+
+                return dt
+
+        if isinstance(value, (int, float)):
+
+            timestamp = float(value)
+
+            # milliseconds
+            if timestamp > 10_000_000_000:
+                timestamp = timestamp / 1000
+
+            return datetime.fromtimestamp(
+                timestamp,
+                tz=timezone.utc
+            )
+
+    except Exception:
+
+        return None
+
+    return None
+
+
+def pakistan_time(value):
+
+    dt = parse_timestamp(value)
+
+    if dt is None:
+        return "N/A"
+
+    pkt = dt.astimezone(
+        timezone(timedelta(hours=5))
+    )
+
+    return pkt.strftime(
+        "%d-%m-%Y %I:%M:%S %p PKT"
+    )
+
+
+def token_age_hours(value):
+
+    dt = parse_timestamp(value)
+
+    if dt is None:
+        return None
+
+    now = datetime.now(timezone.utc)
+
+    age = (
+        now - dt
+    ).total_seconds() / 3600
+
+    return age
+
+
+def is_recent_launch(value):
+
+    age = token_age_hours(value)
+
+    if age is None:
+        return False
+
+    # مستقبل کی غلط timestamp کو بھی قبول نہیں کریں گے
+    if age < 0:
+        return False
+
+    return age <= MAX_TOKEN_AGE_HOURS
 
 
 def main():
@@ -286,6 +374,10 @@ def main():
     current_tokens = {}
 
     total_found = 0
+
+    # ==============================
+    # Binance Web3 سے موجودہ ٹوکنز
+    # ==============================
 
     for chain_id, chain_name in CHAINS.items():
 
@@ -339,12 +431,6 @@ def main():
                     "launchTime": token.get(
                         "launchTime"
                     ),
-                    "volume1m": token.get(
-                        "volume1m"
-                    ),
-                    "volume5m": token.get(
-                        "volume5m"
-                    ),
                     "volume24h": token.get(
                         "volume24h"
                     )
@@ -366,27 +452,38 @@ def main():
         len(current_tokens)
     )
 
-    # پہلی مرتبہ Bot چلنے پر
+    # ==========================================
+    # پہلی مرتبہ بوٹ چلنے پر
+    # موجودہ پرانے ٹوکن صرف محفوظ ہوں گے
+    # ==========================================
+
     if not old_tokens:
 
         save_tokens(current_tokens)
 
         send_telegram(
             "✅ Binance Web3 Wallet Monitor Started\n\n"
-            f"🌐 Chains monitored: "
-            f"{len(CHAINS)}\n"
-            f"🪙 Tokens recorded: "
+            f"🌐 Chains monitored: {len(CHAINS)}\n"
+            f"🪙 Existing tokens recorded: "
             f"{len(current_tokens)}\n\n"
-            "🟢 Supply Filter: BELOW 500M\n\n"
-            "🚨 From now on, Telegram alerts "
-            "will be sent only for NEW Web3 "
-            "tokens with Total Supply below "
-            "500 million."
+
+            "🔒 Filters enabled:\n"
+            "• Launch age ≤ 24 hours\n"
+            "• Total Supply < 500M\n"
+            "• Liquidity ≥ $100K\n"
+            "• Market Cap ≥ $500K\n"
+            "• Holders ≥ 100\n"
+            "• 24h Volume ≥ $50K\n\n"
+
+            "🚨 Existing old tokens will NOT be alerted."
         )
 
         return
 
-    # نئے tokens
+    # ==========================================
+    # صرف نئے tokens
+    # ==========================================
+
     new_tokens = []
 
     for token_key, token in current_tokens.items():
@@ -400,7 +497,10 @@ def main():
         len(new_tokens)
     )
 
-    # نئے tokens کی Supply چیک کریں
+    # ==========================================
+    # ہر نئے ٹوکن کی مکمل جانچ
+    # ==========================================
+
     for token in new_tokens:
 
         symbol = token.get(
@@ -424,10 +524,74 @@ def main():
 
         try:
 
+            # Binance Dynamic API
             dynamic = get_token_dynamic(
                 chain_id,
                 contract
             )
+
+            # ------------------------------
+            # Launch Time
+            # ------------------------------
+
+            launch_time_value = get_value(
+                dynamic,
+                "launchTime",
+                "launch_time"
+            )
+
+            if launch_time_value is None:
+
+                launch_time_value = token.get(
+                    "launchTime"
+                )
+
+            print(
+                f"{symbol} | "
+                f"{chain_name} | "
+                f"Launch: "
+                f"{pakistan_time(launch_time_value)}"
+            )
+
+            # ------------------------------
+            # 24 Hour Launch Filter
+            # ------------------------------
+
+            age = token_age_hours(
+                launch_time_value
+            )
+
+            if age is None:
+
+                print(
+                    "SKIPPED - Launch time unavailable:",
+                    symbol
+                )
+
+                continue
+
+            if age < 0:
+
+                print(
+                    "SKIPPED - Future launch time:",
+                    symbol
+                )
+
+                continue
+
+            if age > MAX_TOKEN_AGE_HOURS:
+
+                print(
+                    "SKIPPED - Old token:",
+                    symbol,
+                    f"{age:.2f} hours old"
+                )
+
+                continue
+
+            # ------------------------------
+            # Total Supply
+            # ------------------------------
 
             total_supply = safe_supply(
                 get_value(
@@ -437,6 +601,29 @@ def main():
                 )
             )
 
+            if total_supply is None:
+
+                print(
+                    "SKIPPED - Supply unavailable:",
+                    symbol
+                )
+
+                continue
+
+            if total_supply >= MAX_SUPPLY:
+
+                print(
+                    "SKIPPED - Supply too high:",
+                    symbol,
+                    format_supply(total_supply)
+                )
+
+                continue
+
+            # ------------------------------
+            # Circulating Supply
+            # ------------------------------
+
             circulating_supply = safe_supply(
                 get_value(
                     dynamic,
@@ -445,42 +632,40 @@ def main():
                 )
             )
 
-            print(
-                f"{symbol} | "
-                f"{chain_name} | "
-                f"Total Supply: "
-                f"{total_supply}"
-            )
+            # ------------------------------
+            # Liquidity
+            # ------------------------------
 
-            # Supply نہ ملے تو الرٹ نہیں
-            if total_supply is None:
-
-                print(
-                    "Supply unavailable - skipped:",
-                    symbol,
-                    chain_name
-                )
-
-                continue
-
-            # 500 Million یا زیادہ = SKIP
-            if total_supply >= MAX_SUPPLY:
-
-                print(
-                    "Supply filter rejected:",
-                    symbol,
-                    format_supply(total_supply)
-                )
-
-                continue
-
-            price = safe_number(
+            liquidity = safe_number(
                 get_value(
                     dynamic,
-                    "price"
+                    "liquidity"
                 )
-                or token.get("price")
+                or token.get("liquidity")
             )
+
+            if liquidity is None:
+
+                print(
+                    "SKIPPED - Liquidity unavailable:",
+                    symbol
+                )
+
+                continue
+
+            if liquidity < MIN_LIQUIDITY:
+
+                print(
+                    "SKIPPED - Liquidity too low:",
+                    symbol,
+                    liquidity
+                )
+
+                continue
+
+            # ------------------------------
+            # Market Cap
+            # ------------------------------
 
             market_cap = safe_number(
                 get_value(
@@ -491,13 +676,67 @@ def main():
                 or token.get("marketCap")
             )
 
-            liquidity = safe_number(
-                get_value(
-                    dynamic,
-                    "liquidity"
+            if market_cap is None:
+
+                print(
+                    "SKIPPED - Market Cap unavailable:",
+                    symbol
                 )
-                or token.get("liquidity")
+
+                continue
+
+            if market_cap < MIN_MARKET_CAP:
+
+                print(
+                    "SKIPPED - Market Cap too low:",
+                    symbol,
+                    market_cap
+                )
+
+                continue
+
+            # ------------------------------
+            # Holders
+            # ------------------------------
+
+            holders = get_value(
+                dynamic,
+                "holders",
+                "holderCount"
             )
+
+            if holders is None:
+
+                holders = token.get(
+                    "holders"
+                )
+
+            holders_number = safe_number(
+                holders
+            )
+
+            if holders_number is None:
+
+                print(
+                    "SKIPPED - Holders unavailable:",
+                    symbol
+                )
+
+                continue
+
+            if holders_number < MIN_HOLDERS:
+
+                print(
+                    "SKIPPED - Too few holders:",
+                    symbol,
+                    holders_number
+                )
+
+                continue
+
+            # ------------------------------
+            # 24h Volume
+            # ------------------------------
 
             volume_24h = safe_number(
                 get_value(
@@ -508,35 +747,49 @@ def main():
                 or token.get("volume24h")
             )
 
-            holders = get_value(
-                dynamic,
-                "holders",
-                "holderCount"
-            )
+            if volume_24h is None:
 
-            if holders is None:
-                holders = token.get(
-                    "holders",
-                    "N/A"
+                print(
+                    "SKIPPED - 24h volume unavailable:",
+                    symbol
                 )
 
-            launch_time_value = get_value(
-                dynamic,
-                "launchTime",
-                "launch_time"
-            )
+                continue
 
-            if launch_time_value is None:
-                launch_time_value = token.get(
-                    "launchTime"
+            if volume_24h < MIN_VOLUME_24H:
+
+                print(
+                    "SKIPPED - Volume too low:",
+                    symbol,
+                    volume_24h
                 )
 
-            launch_time = pakistan_time(
-                launch_time_value
+                continue
+
+            # ------------------------------
+            # Price
+            # ------------------------------
+
+            price = get_value(
+                dynamic,
+                "price"
+            )
+
+            if price is None:
+                price = token.get(
+                    "price"
+                )
+
+            # ------------------------------
+            # سب فلٹر پاس
+            # ------------------------------
+
+            launch_age_text = (
+                f"{age:.1f} hours ago"
             )
 
             message = (
-                "🟢 NEW BINANCE WEB3 TOKEN\n\n"
+                "🟢 NEW QUALIFIED BINANCE WEB3 TOKEN\n\n"
 
                 f"🪙 Symbol: {symbol}\n"
                 f"⛓️ Chain: {chain_name}\n\n"
@@ -547,28 +800,38 @@ def main():
                 f"🔄 Circulating Supply: "
                 f"{format_supply(circulating_supply)}\n\n"
 
-                f"💵 Price: {price}\n"
-                f"💧 Liquidity: {liquidity}\n"
-                f"📊 Market Cap: {market_cap}\n"
-                f"📈 24h Volume: {volume_24h}\n"
-                f"👥 Holders: {holders}\n\n"
+                f"💵 Price: {format_money(price)}\n"
+                f"💧 Liquidity: {format_money(liquidity)}\n"
+                f"📊 Market Cap: {format_money(market_cap)}\n"
+                f"📈 24h Volume: {format_money(volume_24h)}\n"
+                f"👥 Holders: {int(holders_number)}\n\n"
 
                 f"⏰ Launch Time:\n"
-                f"{launch_time}\n\n"
+                f"{pakistan_time(launch_time_value)}\n"
+                f"🕐 Age: {launch_age_text}\n\n"
 
                 f"📜 Contract:\n"
                 f"{contract}\n\n"
 
-                "🟢 Supply < 500M\n"
-                "⚡ Binance Web3 Wallet Monitor"
+                "✅ Supply < 500M\n"
+                "✅ Liquidity ≥ $100K\n"
+                "✅ Market Cap ≥ $500K\n"
+                "✅ Holders ≥ 100\n"
+                "✅ 24h Volume ≥ $50K\n"
+                "✅ Launch ≤ 24 hours\n\n"
+
+                "⚠️ Filtered candidate — "
+                "not a guarantee of profit or safety."
             )
 
             try:
 
-                send_telegram(message)
+                send_telegram(
+                    message
+                )
 
                 print(
-                    "Telegram alert sent:",
+                    "QUALIFIED ALERT SENT:",
                     symbol,
                     chain_name,
                     contract
@@ -584,14 +847,19 @@ def main():
         except Exception as e:
 
             print(
-                "Supply check error:",
+                "Token check error:",
                 symbol,
                 chain_name,
                 e
             )
 
-    # Database update
-    save_tokens(current_tokens)
+    # ==========================================
+    # Database Update
+    # ==========================================
+
+    save_tokens(
+        current_tokens
+    )
 
     print(
         "Wallet token database updated."
