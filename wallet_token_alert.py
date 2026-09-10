@@ -1,8 +1,8 @@
-
 import os
 import json
 import requests
 from datetime import datetime, timezone, timedelta
+
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
@@ -20,9 +20,10 @@ BINANCE_DYNAMIC_URL = (
 
 STATE_FILE = "wallet_tokens.json"
 
-# ==============================
-# فلٹرز
-# ==============================
+
+# =========================================================
+# FILTERS
+# =========================================================
 
 MAX_SUPPLY = 500_000_000
 MIN_LIQUIDITY = 100_000
@@ -33,6 +34,7 @@ MIN_VOLUME_24H = 50_000
 # صرف گزشتہ 24 گھنٹوں میں لانچ ہونے والے ٹوکن
 MAX_TOKEN_AGE_HOURS = 24
 
+
 CHAINS = {
     "56": "BSC",
     "1": "Ethereum",
@@ -40,6 +42,10 @@ CHAINS = {
     "CT_501": "Solana"
 }
 
+
+# =========================================================
+# BINANCE WEB3 TOKEN LIST
+# =========================================================
 
 def get_wallet_tokens(chain_id):
 
@@ -81,6 +87,10 @@ def get_wallet_tokens(chain_id):
     return data.get("tokens", [])
 
 
+# =========================================================
+# TOKEN DYNAMIC INFO
+# =========================================================
+
 def get_token_dynamic(chain_id, contract_address):
 
     headers = {
@@ -112,6 +122,10 @@ def get_token_dynamic(chain_id, contract_address):
     return result.get("data") or {}
 
 
+# =========================================================
+# TELEGRAM
+# =========================================================
+
 def send_telegram(message):
 
     url = (
@@ -131,20 +145,27 @@ def send_telegram(message):
     response.raise_for_status()
 
 
+# =========================================================
+# DATABASE
+# =========================================================
+
 def load_old_tokens():
 
     if not os.path.exists(STATE_FILE):
         return {}
 
     try:
+
         with open(
             STATE_FILE,
             "r",
             encoding="utf-8"
         ) as f:
+
             return json.load(f)
 
     except Exception:
+
         return {}
 
 
@@ -163,6 +184,10 @@ def save_tokens(tokens):
             indent=2
         )
 
+
+# =========================================================
+# HELPERS
+# =========================================================
 
 def get_value(data, *keys):
 
@@ -237,6 +262,10 @@ def format_supply(value):
     return f"{number:.2f}"
 
 
+# =========================================================
+# TIME
+# =========================================================
+
 def parse_timestamp(value):
 
     if value is None:
@@ -249,6 +278,7 @@ def parse_timestamp(value):
             value = value.strip()
 
             if value.replace(".", "", 1).isdigit():
+
                 value = float(value)
 
             else:
@@ -261,6 +291,7 @@ def parse_timestamp(value):
                 dt = datetime.fromisoformat(text)
 
                 if dt.tzinfo is None:
+
                     dt = dt.replace(
                         tzinfo=timezone.utc
                     )
@@ -272,6 +303,7 @@ def parse_timestamp(value):
             timestamp = float(value)
 
             if timestamp > 10_000_000_000:
+
                 timestamp /= 1000
 
             return datetime.fromtimestamp(
@@ -297,7 +329,12 @@ def pakistan_time(value):
         timezone(timedelta(hours=5))
     )
 
-    return pkt.strftime(
+    return dt_to_string(pkt)
+
+
+def dt_to_string(dt):
+
+    return dt.strftime(
         "%d-%m-%Y %I:%M:%S %p PKT"
     )
 
@@ -316,14 +353,20 @@ def token_age_hours(value):
     ).total_seconds() / 3600
 
 
+# =========================================================
+# MAIN
+# =========================================================
+
 def main():
 
     if not BOT_TOKEN:
+
         raise Exception(
             "TELEGRAM_BOT_TOKEN missing"
         )
 
     if not CHAT_ID:
+
         raise Exception(
             "TELEGRAM_CHAT_ID missing"
         )
@@ -334,9 +377,10 @@ def main():
 
     total_found = 0
 
-    # =================================
-    # Binance Web3 tokens حاصل کریں
-    # =================================
+
+    # =====================================================
+    # GET BINANCE WEB3 TOKENS
+    # =====================================================
 
     for chain_id, chain_name in CHAINS.items():
 
@@ -368,13 +412,18 @@ def main():
                 )
 
                 current_tokens[token_key] = {
+
                     "chainId": chain_id,
+
                     "chainName": chain_name,
+
                     "contractAddress": contract,
+
                     "symbol": token.get(
                         "symbol",
                         "N/A"
                     ),
+
                     "launchTime": token.get(
                         "launchTime"
                     )
@@ -386,6 +435,7 @@ def main():
                 f"ERROR {chain_name}: {e}"
             )
 
+
     print(
         "Total tokens received:",
         total_found
@@ -396,10 +446,10 @@ def main():
         len(current_tokens)
     )
 
-    # =================================
-    # پہلی مرتبہ چلنے پر
-    # پرانے tokens محفوظ کریں
-    # =================================
+
+    # =====================================================
+    # FIRST RUN
+    # =====================================================
 
     if not old_tokens:
 
@@ -424,9 +474,10 @@ def main():
 
         return
 
-    # =================================
-    # صرف نئے tokens
-    # =================================
+
+    # =====================================================
+    # FIND NEW TOKENS
+    # =====================================================
 
     new_tokens = []
 
@@ -436,14 +487,16 @@ def main():
 
             new_tokens.append(token)
 
+
     print(
         "New Wallet/Web3 tokens:",
         len(new_tokens)
     )
 
-    # =================================
-    # ہر نئے token کی جانچ
-    # =================================
+
+    # =====================================================
+    # CHECK EACH NEW TOKEN
+    # =====================================================
 
     for token in new_tokens:
 
@@ -465,6 +518,7 @@ def main():
             "contractAddress"
         )
 
+
         try:
 
             dynamic = get_token_dynamic(
@@ -472,9 +526,10 @@ def main():
                 contract
             )
 
-            # =========================
-            # Launch Time
-            # =========================
+
+            # =================================================
+            # LAUNCH TIME
+            # =================================================
 
             launch_time = get_value(
                 dynamic,
@@ -488,9 +543,11 @@ def main():
                     "launchTime"
                 )
 
+
             age = token_age_hours(
                 launch_time
             )
+
 
             print(
                 f"{symbol} | "
@@ -499,7 +556,9 @@ def main():
                 f"{pakistan_time(launch_time)}"
             )
 
-            # Launch Time لازمی ہے
+
+            # Launch time ضروری ہے
+
             if age is None:
 
                 print(
@@ -509,7 +568,9 @@ def main():
 
                 continue
 
-            # مستقبل کی غلط تاریخ
+
+            # مستقبل کی تاریخ
+
             if age < 0:
 
                 print(
@@ -519,7 +580,9 @@ def main():
 
                 continue
 
+
             # 24 گھنٹے سے پرانا
+
             if age > MAX_TOKEN_AGE_HOURS:
 
                 print(
@@ -530,9 +593,10 @@ def main():
 
                 continue
 
-            # =========================
-            # Total Supply
-            # =========================
+
+            # =================================================
+            # TOTAL SUPPLY
+            # =================================================
 
             total_supply = safe_number(
                 get_value(
@@ -541,6 +605,7 @@ def main():
                     "total_supply"
                 )
             )
+
 
             if total_supply is None:
 
@@ -551,6 +616,7 @@ def main():
 
                 continue
 
+
             if total_supply >= MAX_SUPPLY:
 
                 print(
@@ -560,9 +626,10 @@ def main():
 
                 continue
 
-            # =========================
-            # Liquidity
-            # =========================
+
+            # =================================================
+            # LIQUIDITY
+            # =================================================
 
             liquidity = safe_number(
                 get_value(
@@ -571,11 +638,15 @@ def main():
                 )
             )
 
+
             if liquidity is None:
 
                 liquidity = safe_number(
-                    token.get("liquidity")
+                    token.get(
+                        "liquidity"
+                    )
                 )
+
 
             if liquidity is None:
 
@@ -586,6 +657,7 @@ def main():
 
                 continue
 
+
             if liquidity < MIN_LIQUIDITY:
 
                 print(
@@ -595,9 +667,10 @@ def main():
 
                 continue
 
-            # =========================
-            # Market Cap
-            # =========================
+
+            # =================================================
+            # MARKET CAP
+            # =================================================
 
             market_cap = safe_number(
                 get_value(
@@ -607,11 +680,15 @@ def main():
                 )
             )
 
+
             if market_cap is None:
 
                 market_cap = safe_number(
-                    token.get("marketCap")
+                    token.get(
+                        "marketCap"
+                    )
                 )
+
 
             if market_cap is None:
 
@@ -622,6 +699,7 @@ def main():
 
                 continue
 
+
             if market_cap < MIN_MARKET_CAP:
 
                 print(
@@ -631,9 +709,10 @@ def main():
 
                 continue
 
-            # =========================
-            # Holders
-            # =========================
+
+            # =================================================
+            # HOLDERS
+            # =================================================
 
             holders = get_value(
                 dynamic,
@@ -641,15 +720,18 @@ def main():
                 "holderCount"
             )
 
+
             if holders is None:
 
                 holders = token.get(
                     "holders"
                 )
 
+
             holders = safe_number(
                 holders
             )
+
 
             if holders is None:
 
@@ -660,6 +742,7 @@ def main():
 
                 continue
 
+
             if holders < MIN_HOLDERS:
 
                 print(
@@ -669,9 +752,10 @@ def main():
 
                 continue
 
-            # =========================
-            # 24h Volume
-            # =========================
+
+            # =================================================
+            # 24H VOLUME
+            # =================================================
 
             volume_24h = safe_number(
                 get_value(
@@ -681,11 +765,15 @@ def main():
                 )
             )
 
+
             if volume_24h is None:
 
                 volume_24h = safe_number(
-                    token.get("volume24h")
+                    token.get(
+                        "volume24h"
+                    )
                 )
+
 
             if volume_24h is None:
 
@@ -696,6 +784,7 @@ def main():
 
                 continue
 
+
             if volume_24h < MIN_VOLUME_24H:
 
                 print(
@@ -705,19 +794,27 @@ def main():
 
                 continue
 
-            # =========================
-            # Price
-            # =========================
+
+            # =================================================
+            # PRICE
+            # =================================================
 
             price = get_value(
                 dynamic,
                 "price"
             )
 
+
             if price is None:
+
                 price = token.get(
                     "price"
                 )
+
+
+            # =================================================
+            # CIRCULATING SUPPLY
+            # =================================================
 
             circulating_supply = safe_number(
                 get_value(
@@ -727,50 +824,86 @@ def main():
                 )
             )
 
-            # =========================
-            # Telegram Alert
-            # =========================
 
-            message = (
-                "🟢 NEW QUALIFIED BINANCE WEB3 TOKEN\n\n"
+            # =================================================
+            # FORMAT TIME SEPARATELY
+            # =================================================
 
-                f"🪙 Symbol: {symbol}\n"
-                f"⛓️ Chain: {chain_name}\n\n"
+            launch_time_text = pakistan_time(
+                launch_time
+            )
 
-                f"📦 Total Supply: "
-                f"{format_supply(total_supply)}\n"
 
-                f"🔄 Circulating Supply: "
-                f"{format_supply(circulating_supply)}\n\n"
+            # =================================================
+            # TELEGRAM MESSAGE
+            # =================================================
 
-                f"💵 Price: {format_money(price)}\n"
-                f"💧 Liquidity: "
-                f"{format_money(liquidity)}\n"
-                f"📊 Market Cap: "
-                f"{format_money(market_cap)}\n"
-                f"📈 24h Volume: "
-                f"{format_money(volume_24h)}\n"
-                f"👥 Holders: "
-                f"{int(holders)}\n\n"
+            message_lines = [
 
-                f"⏰ Launch Time:\n"
-                f"{pakistan_ti
-                f"🕐 Age: "
-                f"{age:.1f} hours\n\n"
+                "🟢 NEW QUALIFIED BINANCE WEB3 TOKEN",
+                "",
 
-                f"📜 Contract:\n"
-                f"{contract}\n\n"
+                f"🪙 Symbol: {symbol}",
+                f"⛓️ Chain: {chain_name}",
+                "",
 
-                "✅ Supply < 500M\n"
-                "✅ Liquidity ≥ $100K\n"
-                "✅ Market Cap ≥ $500K\n"
-                "✅ Holders ≥ 100\n"
-                "✅ 24h Volume ≥ $50K\n"
-                "✅ Launch ≤ 24 hours\n\n"
+                "📦 Total Supply: "
+                f"{format_supply(total_supply)}",
+
+                "🔄 Circulating Supply: "
+                f"{format_supply(circulating_supply)}",
+
+                "",
+
+                f"💵 Price: {format_money(price)}",
+
+                "💧 Liquidity: "
+                f"{format_money(liquidity)}",
+
+                "📊 Market Cap: "
+                f"{format_money(market_cap)}",
+
+                "📈 24h Volume: "
+                f"{format_money(volume_24h)}",
+
+                f"👥 Holders: {int(holders)}",
+
+                "",
+
+                "⏰ Launch Time:",
+                launch_time_text,
+
+                f"🕐 Age: {age:.1f} hours",
+
+                "",
+
+                "📜 Contract:",
+                contract,
+
+                "",
+
+                "✅ Supply < 500M",
+                "✅ Liquidity ≥ $100K",
+                "✅ Market Cap ≥ $500K",
+                "✅ Holders ≥ 100",
+                "✅ 24h Volume ≥ $50K",
+                "✅ Launch ≤ 24 hours",
+
+                "",
 
                 "⚠️ یہ فلٹر صرف ابتدائی چھان بین ہے، "
                 "منافع یا حفاظت کی ضمانت نہیں۔"
+            ]
+
+
+            message = "\n".join(
+                message_lines
             )
+
+
+            # =================================================
+            # SEND ALERT
+            # =================================================
 
             try:
 
@@ -791,6 +924,7 @@ def main():
                     e
                 )
 
+
         except Exception as e:
 
             print(
@@ -800,9 +934,10 @@ def main():
                 e
             )
 
-    # =================================
-    # Database update
-    # =================================
+
+    # =====================================================
+    # UPDATE DATABASE
+    # =====================================================
 
     save_tokens(
         current_tokens
@@ -813,6 +948,10 @@ def main():
     )
 
 
-if __name__ == "__main__":
-    main()
+# =========================================================
+# START
+# =========================================================
 
+if __name__ == "__main__":
+
+    main()
