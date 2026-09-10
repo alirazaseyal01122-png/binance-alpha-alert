@@ -5,6 +5,11 @@ on:
     - cron: "*/2 * * * *"
   workflow_dispatch:
 
+# ایک وقت میں صرف ایک run چلے گا
+concurrency:
+  group: binance-alpha-web3-monitor
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -36,6 +41,7 @@ jobs:
       # ==============================
       - name: Install requests
         run: |
+          python -m pip install --upgrade pip
           pip install requests
 
       # ==============================
@@ -55,6 +61,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: |
           python wallet_token_alert.py
 
@@ -76,14 +83,16 @@ jobs:
 
           git commit -m "Update Binance token states"
 
-          echo "Fetching latest remote changes..."
-
+          # تازہ ترین main حاصل کریں
           git fetch origin main
 
-          echo "Rebasing local changes..."
+          # اگر remote میں نئی تبدیلی ہو تو پہلے اسے شامل کریں
+          git merge --no-edit origin/main || {
+            echo "Merge conflict detected."
+            echo "Aborting this state update to avoid corrupting token databases."
+            git merge --abort || true
+            exit 0
+          }
 
-          git rebase origin/main
-
-          echo "Pushing updated state..."
-
+          # تازہ ترین state محفوظ کریں
           git push origin main
