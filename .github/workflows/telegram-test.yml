@@ -1,8 +1,8 @@
-name: Binance Alpha + Wallet Monitor
+name: Binance Alpha + Web3 Validator
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/2 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -14,23 +14,33 @@ jobs:
 
     steps:
 
+      # ==============================
+      # Checkout
+      # ==============================
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
+          fetch-depth: 0
           persist-credentials: true
 
+      # ==============================
+      # Python
+      # ==============================
       - name: Install Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
+      # ==============================
+      # Requests
+      # ==============================
       - name: Install requests
-        run: pip install requests
+        run: |
+          pip install requests
 
-      # =========================
-      # BINANCE ALPHA MONITOR
-      # =========================
-
+      # ==============================
+      # Binance Alpha Monitor
+      # ==============================
       - name: Run Binance Alpha Monitor
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -38,29 +48,42 @@ jobs:
         run: |
           python alpha_alert.py
 
-      # =========================
-      # BINANCE WALLET / WEB3
-      # MONITOR
-      # =========================
-
-      - name: Run Binance Wallet Monitor
+      # ==============================
+      # Binance Web3 Monitor
+      # ==============================
+      - name: Run Binance Web3 Wallet Monitor
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           python wallet_token_alert.py
 
-      # =========================
-      # SAVE DATABASES
-      # =========================
-
-      - name: Save token states
+      # ==============================
+      # Save token databases
+      # ==============================
+      - name: Save token state
         run: |
+
           git config user.name "Binance Web3 Monitor"
-          git config user.email "binance-web3-bot@users.noreply.github.com"
+          git config user.email "binance-web3-monitor@users.noreply.github.com"
 
           git add alpha_tokens.json wallet_tokens.json
 
-          git diff --cached --quiet || git commit -m "Update Binance token states"
+          if git diff --cached --quiet; then
+            echo "No token state changes to commit."
+            exit 0
+          fi
 
-          git push
+          git commit -m "Update Binance token states"
+
+          echo "Fetching latest remote changes..."
+
+          git fetch origin main
+
+          echo "Rebasing local changes..."
+
+          git rebase origin/main
+
+          echo "Pushing updated state..."
+
+          git push origin main
