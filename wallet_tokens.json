@@ -1,4 +1,11 @@
 {
+  "56:0x8400c5b3bad44abfa4b5e08dda8bc55ca05f15b0": {
+    "chainId": "56",
+    "chainName": "BSC",
+    "contractAddress": "0x8400c5b3bad44abfa4b5e08dda8bc55ca05f15b0",
+    "symbol": "SEL",
+    "launchTime": "1789688992700"
+  },
   "56:0xf58d3992dd95e9d436778b34a62b58f6d88385e0": {
     "chainId": "56",
     "chainName": "BSC",
@@ -6,26 +13,12 @@
     "symbol": "VIKI🐵",
     "launchTime": "1789688676350"
   },
-  "56:0xc964168cbe3a23746a5b47e1cd52d2013c1fa90b": {
-    "chainId": "56",
-    "chainName": "BSC",
-    "contractAddress": "0xc964168cbe3a23746a5b47e1cd52d2013c1fa90b",
-    "symbol": "虚界",
-    "launchTime": "1789688655650"
-  },
   "56:0x8f2f8d076e3e9923a8aa6e0cace2efcc72657777": {
     "chainId": "56",
     "chainName": "BSC",
     "contractAddress": "0x8f2f8d076e3e9923a8aa6e0cace2efcc72657777",
     "symbol": "TTCAT",
     "launchTime": "1789688353000"
-  },
-  "56:0x10a9352fb5f88d8ff1b33a3c9d3c7fa7db64156d": {
-    "chainId": "56",
-    "chainName": "BSC",
-    "contractAddress": "0x10a9352fb5f88d8ff1b33a3c9d3c7fa7db64156d",
-    "symbol": "ORCORC",
-    "launchTime": "1789688218600"
   },
   "56:0xf49a6abded8b1c279ec6f01d7227f4c708cb7777": {
     "chainId": "56",
@@ -1385,6 +1378,27 @@
     "symbol": "王隺",
     "launchTime": "1789632105000"
   },
+  "56:0x8ece902412f03d1cdbfb8e74d2be0af509717777": {
+    "chainId": "56",
+    "chainName": "BSC",
+    "contractAddress": "0x8ece902412f03d1cdbfb8e74d2be0af509717777",
+    "symbol": "FBEG",
+    "launchTime": "1789632076000"
+  },
+  "56:0x803ef5d6411e883abce7cd17cfeb20dd2a7e7777": {
+    "chainId": "56",
+    "chainName": "BSC",
+    "contractAddress": "0x803ef5d6411e883abce7cd17cfeb20dd2a7e7777",
+    "symbol": "王隺棣",
+    "launchTime": "1789632045000"
+  },
+  "56:0xd3f5951adcc127960658fe618e289d0d17c77777": {
+    "chainId": "56",
+    "chainName": "BSC",
+    "contractAddress": "0xd3f5951adcc127960658fe618e289d0d17c77777",
+    "symbol": "财富人生",
+    "launchTime": "1789632000000"
+  },
   "1:0xdb7b826a9a253e601b8a5afb8feb80d26688eaab": {
     "chainId": "1",
     "chainName": "Ethereum",
@@ -2505,13 +2519,6 @@
     "symbol": "APEX",
     "launchTime": "1748320643000"
   },
-  "1:0x0f7dc5d02cc1e1f5ee47854d534d332a1081ccc8": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0x0f7dc5d02cc1e1f5ee47854d534d332a1081ccc8",
-    "symbol": "ZEUS",
-    "launchTime": "1747863815000"
-  },
   "1:0xcccccccccc33d538dbc2ee4feab0a7a1ff4e8a94": {
     "chainId": "1",
     "chainName": "Ethereum",
@@ -2525,13 +2532,6 @@
     "contractAddress": "0x6440f144b7e50d6a8439336510312d2f54beb01d",
     "symbol": "BOLD",
     "launchTime": "1747661975000"
-  },
-  "1:0xb59490ab09a0f526cc7305822ac65f2ab12f9723": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0xb59490ab09a0f526cc7305822ac65f2ab12f9723",
-    "symbol": "LIT",
-    "launchTime": "1747440767000"
   },
   "1:0x817162975186d4d53dbf5a7377dd45376e2d2fc5": {
     "chainId": "1",
@@ -2581,13 +2581,6 @@
     "contractAddress": "0x0b010000b7624eb9b3dfbc279673c76e9d29d5f7",
     "symbol": "OBOL",
     "launchTime": "1746260699000"
-  },
-  "1:0xef4461891dfb3ac8572ccf7c794664a8dd927945": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0xef4461891dfb3ac8572ccf7c794664a8dd927945",
-    "symbol": "WCT",
-    "launchTime": "1745495519000"
   },
   "1:0x93a2db22b7c736b341c32ff666307f4a9ed910f5": {
     "chainId": "1",
@@ -2771,19 +2764,33 @@
     "symbol": "KCS",
     "launchTime": "1738550471000"
   },
-  "8453:0xfc44edc2cfd0ce425111058b4b547c84214b7c9a": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0xfc44edc2cfd0ce425111058b4b547c84214b7c9a",
-    "symbol": "MANYU",
-    "launchTime": "1789688561000"
+  "1:0x4274cd7277c7bb0806bd5fe84b9adae466a8da0a": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0x4274cd7277c7bb0806bd5fe84b9adae466a8da0a",
+    "symbol": "YUSD",
+    "launchTime": "1738320299000"
   },
-  "8453:0x2c49267bb366fb5dd50683faa463502014eec8e2": {
+  "1:0x76a0e27618462bdac7a29104bdcfff4e6bfcea2d": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0x76a0e27618462bdac7a29104bdcfff4e6bfcea2d",
+    "symbol": "SOSO",
+    "launchTime": "1737810395000"
+  },
+  "8453:0xdcb2174fe4b003224217e409bfe8cfa985c69fdc": {
     "chainId": "8453",
     "chainName": "Base",
-    "contractAddress": "0x2c49267bb366fb5dd50683faa463502014eec8e2",
-    "symbol": "LIQUIDBGT",
-    "launchTime": "1789688485000"
+    "contractAddress": "0xdcb2174fe4b003224217e409bfe8cfa985c69fdc",
+    "symbol": "LAPTOP",
+    "launchTime": "1789689039000"
+  },
+  "8453:0x242121ef10a4de4287259f324ccaa51c4eb74239": {
+    "chainId": "8453",
+    "chainName": "Base",
+    "contractAddress": "0x242121ef10a4de4287259f324ccaa51c4eb74239",
+    "symbol": "DEGENFLY",
+    "launchTime": "1789688335000"
   },
   "8453:0x37c3d1ed396461ec684b94be492205cd909adba3": {
     "chainId": "8453",
@@ -3072,19 +3079,19 @@
     "symbol": "SPR",
     "launchTime": "1789611253000"
   },
+  "8453:0x30fb1c53e2f48a6882e2a1e923902f7f4231ea31": {
+    "chainId": "8453",
+    "chainName": "Base",
+    "contractAddress": "0x30fb1c53e2f48a6882e2a1e923902f7f4231ea31",
+    "symbol": "MSFT",
+    "launchTime": "1789602753000"
+  },
   "8453:0xe658b026ca2be2184c32df95afb8c250dd870a3e": {
     "chainId": "8453",
     "chainName": "Base",
     "contractAddress": "0xe658b026ca2be2184c32df95afb8c250dd870a3e",
     "symbol": "ELON",
     "launchTime": "1789602159000"
-  },
-  "8453:0xf34003adb2af19d3d38bcbbba9c646e25f099587": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0xf34003adb2af19d3d38bcbbba9c646e25f099587",
-    "symbol": "MM",
-    "launchTime": "1789602015000"
   },
   "8453:0x6af5856ff7887a5cde6102bf3d13c5a3e3a7b37f": {
     "chainId": "8453",
@@ -3205,6 +3212,13 @@
     "symbol": "CMR",
     "launchTime": "1789455247000"
   },
+  "8453:0x74355831c537cff375c64491731e4d1a8c2fca43": {
+    "chainId": "8453",
+    "chainName": "Base",
+    "contractAddress": "0x74355831c537cff375c64491731e4d1a8c2fca43",
+    "symbol": "API",
+    "launchTime": "1789429713000"
+  },
   "8453:0xe34356dcd3d7bb991248f322e4ec31b5d60bc54e": {
     "chainId": "8453",
     "chainName": "Base",
@@ -3265,7 +3279,7 @@
     "chainId": "8453",
     "chainName": "Base",
     "contractAddress": "0x2767d52fbe1d3311f4ef34fde3fa9c60189acfec",
-    "symbol": null,
+    "symbol": "STONK10",
     "launchTime": "1789289861000"
   },
   "8453:0x60555ab88a0caaf893ab284c1332c9d0a05af222": {
@@ -3296,33 +3310,12 @@
     "symbol": "JENSEN",
     "launchTime": "1789161483000"
   },
-  "8453:0x9aee340b42365372b525f075e60672d8fe375655": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0x9aee340b42365372b525f075e60672d8fe375655",
-    "symbol": "SOLV",
-    "launchTime": "1789153387000"
-  },
-  "8453:0xa3d353743164972b37c8e5358fb1e76f0be8aba3": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0xa3d353743164972b37c8e5358fb1e76f0be8aba3",
-    "symbol": "ELON",
-    "launchTime": "1789152891000"
-  },
   "8453:0xcb2baff7177c8966a8b059b3df3e9323dc2ee267": {
     "chainId": "8453",
     "chainName": "Base",
     "contractAddress": "0xcb2baff7177c8966a8b059b3df3e9323dc2ee267",
     "symbol": "ISTONKS",
     "launchTime": "1789147985000"
-  },
-  "8453:0xcc2ad825261ea259087d27b3a3b61eecf947a382": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0xcc2ad825261ea259087d27b3a3b61eecf947a382",
-    "symbol": "WOIF",
-    "launchTime": "1789115585000"
   },
   "8453:0x72f47da54c9a3ff0fb2fc19a0ab946753b17fb07": {
     "chainId": "8453",
@@ -3344,13 +3337,6 @@
     "contractAddress": "0x9b83c2f3c1975bf4b6cc04f8d3f6bc1e98e38ba3",
     "symbol": "STONKFLY",
     "launchTime": "1789046145000"
-  },
-  "8453:0x75af968d2e58749fda1b42c58186b76f5e511ba3": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0x75af968d2e58749fda1b42c58186b76f5e511ba3",
-    "symbol": "CHIP",
-    "launchTime": "1788885261000"
   },
   "8453:0x88f7222ae72884fe4bcf579e0d44b1a39d359837": {
     "chainId": "8453",
@@ -3393,13 +3379,6 @@
     "contractAddress": "0xffe6510baf2a479ab567d76af8ec79d9f7d0366a",
     "symbol": "BLUESCREEN",
     "launchTime": "1788659431000"
-  },
-  "8453:0xb9a1e52f3ed678b01ff5e256fde43f26f9c01ba3": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0xb9a1e52f3ed678b01ff5e256fde43f26f9c01ba3",
-    "symbol": "HOME",
-    "launchTime": "1788426843000"
   },
   "8453:0x48749171639551afc399a554fb22af452f16301e": {
     "chainId": "8453",
@@ -3632,6 +3611,13 @@
     "symbol": "Basehat",
     "launchTime": "1786940221000"
   },
+  "8453:0x5a6a8023755cd13a157e5b3f841f28625dc32e43": {
+    "chainId": "8453",
+    "chainName": "Base",
+    "contractAddress": "0x5a6a8023755cd13a157e5b3f841f28625dc32e43",
+    "symbol": "MEME",
+    "launchTime": "1786936197000"
+  },
   "8453:0x0f61edbfe6cd86024c0f210c0695b08df55fdfc9": {
     "chainId": "8453",
     "chainName": "Base",
@@ -3779,13 +3765,6 @@
     "symbol": "gentle_nimbus_6391",
     "launchTime": "1784536961000"
   },
-  "8453:0xb2000000000000000000004b27c608b6e9814cc0": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0xb2000000000000000000004b27c608b6e9814cc0",
-    "symbol": "HTTPBASE20",
-    "launchTime": "1784210939000"
-  },
   "8453:0xfcd17ac4c4bf6a72c93018096f3fc09e66573ff9": {
     "chainId": "8453",
     "chainName": "Base",
@@ -3807,18 +3786,11 @@
     "symbol": "MYRAD",
     "launchTime": "1784041275000"
   },
-  "8453:0xb2000000000000000000000ee9988edd75453501": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0xb2000000000000000000000ee9988edd75453501",
-    "symbol": "PAMPU",
-    "launchTime": "1783663821000"
-  },
   "8453:0xe6522a891702cd2e8cc2a5182638c9da1dd44b22": {
     "chainId": "8453",
     "chainName": "Base",
     "contractAddress": "0xe6522a891702cd2e8cc2a5182638c9da1dd44b22",
-    "symbol": null,
+    "symbol": "wL1",
     "launchTime": "1783628159000"
   },
   "8453:0x7aa7cb583084defc43cc0c2e95213ce364a8df9c": {
@@ -3848,6 +3820,13 @@
     "contractAddress": "0x73ac2806c40ab4741ea7a35b7328aca957755ba3",
     "symbol": "WOLF",
     "launchTime": "1782751109000"
+  },
+  "8453:0x832bcced5bd431b31663576490344ea1c0bea295": {
+    "chainId": "8453",
+    "chainName": "Base",
+    "contractAddress": "0x832bcced5bd431b31663576490344ea1c0bea295",
+    "symbol": "EUR",
+    "launchTime": "1782177233000"
   },
   "8453:0xeffc8815487084a97edfdff968b56ea123421acb": {
     "chainId": "8453",
@@ -3940,6 +3919,13 @@
     "symbol": "zer0",
     "launchTime": "1779697067000"
   },
+  "8453:0xa382c83e2a3b79368f372c2eb9b6925ffaf45ba3": {
+    "chainId": "8453",
+    "chainName": "Base",
+    "contractAddress": "0xa382c83e2a3b79368f372c2eb9b6925ffaf45ba3",
+    "symbol": "HIVE",
+    "launchTime": "1779684369000"
+  },
   "8453:0xdd15623d107c639af0c5127affa26d3f20327ec8": {
     "chainId": "8453",
     "chainName": "Base",
@@ -3974,13 +3960,6 @@
     "contractAddress": "0x4c433f4ef87fe506a7eed2fd1d822cbed411eba3",
     "symbol": "TSG",
     "launchTime": "1779161763000"
-  },
-  "8453:0xb0df6379ba1692841965a0745ac1bd3046d79ba3": {
-    "chainId": "8453",
-    "chainName": "Base",
-    "contractAddress": "0xb0df6379ba1692841965a0745ac1bd3046d79ba3",
-    "symbol": "ATBASH",
-    "launchTime": "1779136951000"
   },
   "8453:0xf1e9baa65d418a9025e1851dd2d37f1ad208bba3": {
     "chainId": "8453",
@@ -4037,6 +4016,13 @@
     "contractAddress": "0xd5185a8329161567fee26646feaad56f360b146d",
     "symbol": "gCHAR",
     "launchTime": "1778507809000"
+  },
+  "8453:0x1e18981566387958ae470285f73e18b905fadb07": {
+    "chainId": "8453",
+    "chainName": "Base",
+    "contractAddress": "0x1e18981566387958ae470285f73e18b905fadb07",
+    "symbol": null,
+    "launchTime": "1778007461000"
   },
   "8453:0x3722264ab15a1dfce5a5af89e6547f7949a8aba3": {
     "chainId": "8453",
@@ -4150,40 +4136,215 @@
     "symbol": "LIQ",
     "launchTime": "1775680915000"
   },
-  "CT_501:3gxnstj8hbcaz83zsfdxkughnqdvjzx733d6nwazpgv8": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "3GXnStJ8HbcAZ83ZsfDXkughnQDVjZx733d6NwazpGV8",
-    "symbol": "DOGEP",
-    "launchTime": "1789688806000"
+  "8453:0x26dbb1b6f7455414d796ee3abda8c8a94c15f27a": {
+    "chainId": "8453",
+    "chainName": "Base",
+    "contractAddress": "0x26dbb1b6f7455414d796ee3abda8c8a94c15f27a",
+    "symbol": "AGC",
+    "launchTime": "1775671195000"
   },
-  "CT_501:4fdsrqpghh8kx7yrxkzk9vqyxvqkxpwqvyfubnepjqpd": {
+  "CT_501:8ic4tt8aqs6gxgakzzpmcgfccv7znqyo24vp212ypump": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "4fDsrqpGHh8kx7yRXkzK9VqYxVqkxpwqVyFuBNEpjqPD",
-    "symbol": "miner",
-    "launchTime": "1789688794000"
+    "contractAddress": "8iC4tt8Aqs6gxgAKZzPMCgfccV7zNqyo24Vp212Ypump",
+    "symbol": "Wagie",
+    "launchTime": "1789689336000"
   },
-  "CT_501:f3qxnthhbs3ol8unmqhty9qrampqh7jbscz6no3mpump": {
+  "CT_501:bprmxe34tc9avly9qpycddharnidebp2nwwb2tsjpump": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "F3QXNtHHbS3oL8uNmqHtY9qRAMpQH7JbScZ6no3Mpump",
-    "symbol": "lm",
-    "launchTime": "1789688792000"
+    "contractAddress": "BprmXe34tc9aVLy9QPyCddHarnideBp2nwWb2Tsjpump",
+    "symbol": "PCAT",
+    "launchTime": "1789689325000"
   },
-  "CT_501:azgpzimrg4rdmkeqrf2jtbfdarfuz5djp659rju4pump": {
+  "CT_501:chvokhr98hdx7x5n3aktvwzyd1w8jieawft3gsvud6cj": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "AzGpzimrg4rDmKEQrf2jTbfdARFUZ5dJp659rJu4pump",
-    "symbol": "ZEZE",
-    "launchTime": "1789688776000"
+    "contractAddress": "ChvokHR98HdX7x5n3aKtVwzyd1w8JiEAWFt3GSVud6CJ",
+    "symbol": "TRUECODECA",
+    "launchTime": "1789689289000"
   },
-  "CT_501:eqsgyfy62zg6yvyxgj57fiyvfglbrkohx83ckawjpump": {
+  "CT_501:2merkobrciw1miwxp1jsq2e8mazojdavalf1be5hdqdv": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "EQsGYfY62Zg6yVYXgJ57FiYvfgLbRkohx83CkAwjpump",
-    "symbol": "CHECK",
-    "launchTime": "1789688769000"
+    "contractAddress": "2mErKoBRciW1MiWXp1Jsq2e8MaZojDavALf1Be5hdqdV",
+    "symbol": "VPN",
+    "launchTime": "1789689287000"
+  },
+  "CT_501:gykpyjghy5wul3txhwaveihppu2zxxq2rqtikvqzdtpz": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "GykpyJgHy5wUL3TxhwAVeiHppu2ZxXQ2RqtikVqZDTPZ",
+    "symbol": "UNICAT",
+    "launchTime": "1789689283000"
+  },
+  "CT_501:cqriefuzbyob3sr4mvd3jqjsbkmxjchcufmlwff9pump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "CQRieFuZbYoB3sR4mvd3JQJsbKmxJCHCUfMLWFf9pump",
+    "symbol": "the pill",
+    "launchTime": "1789689263000"
+  },
+  "CT_501:3uwcbgja99tkk5xvnsmzc7goqbpvrakxpycxw5cyfutf": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "3UWcBgjA99TKK5xVNsmZc7GoQbPvrakxpYCXW5CYfUTF",
+    "symbol": "ZKGM",
+    "launchTime": "1789689261000"
+  },
+  "CT_501:ek2j8g4euvyw8nkyac3mndulkx6hh2qndqxslx3epump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "EK2J8g4EuvYw8NKyac3mndULKX6HH2QndqxsLX3Epump",
+    "symbol": "chapis",
+    "launchTime": "1789689254000"
+  },
+  "CT_501:cuu8howe9ouj7amshscypfsuov6qrbfrj2xsvhalmndq": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "CUU8HoWE9ouJ7AMsHsCYPFsuov6qrbfrJ2xSVhaLmNDQ",
+    "symbol": "ELIEN",
+    "launchTime": "1789689209000"
+  },
+  "CT_501:abrghclzvpxbzvtxnxuxdcxbwtvmale1tkt5ji8ppump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "AbRGHcLzvPxBzvtXNxuXdcxbWtVMALe1tKT5ji8ppump",
+    "symbol": "ALLINU",
+    "launchTime": "1789689207000"
+  },
+  "CT_501:4hoo3smjok9wyxp8krrdwfmox5513v32886atwl1jnao": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "4Hoo3sMJok9WyXp8KrRDwFmox5513v32886AtwL1jnAo",
+    "symbol": "ZTALK",
+    "launchTime": "1789689150000"
+  },
+  "CT_501:vpenucitkjjhifrr7m93dysywaejz24dufxfai4ltb4": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "VPeNUciTkJJhifRR7M93DYsywaEjz24DUFxFAi4LtB4",
+    "symbol": "Dennis",
+    "launchTime": "1789689150000"
+  },
+  "CT_501:hgm5co7tag7xzgt3bnc9ro4hzxewh27txwyo91gqpump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "HGM5Co7tAG7XzgT3bnc9ro4HZXEwh27TXwYo91Gqpump",
+    "symbol": "catalyst",
+    "launchTime": "1789689126000"
+  },
+  "CT_501:a4kinex5v1bpdqmfw1ma8ikcven6unhv57xzd7v6bwp5": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "A4kiNEx5V1bpDQmfw1MA8ikCveN6unHv57Xzd7V6Bwp5",
+    "symbol": "FIAT",
+    "launchTime": "1789689086000"
+  },
+  "CT_501:djmrarg24b9mv8rh3dcvf19ts3m4pbnsswxodbopump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "DJMraRg24B9MV8Rh3dCVf19TS3M4pbnSSWxoDbopump",
+    "symbol": "XANAX",
+    "launchTime": "1789689073000"
+  },
+  "CT_501:ehvhdyvo9ogjjjntqapwafg9ftvqm8phxtzy2gzdpump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "EhvHdYvo9ogjjJNTQaPWAfg9FTvQM8pHxTzY2gzDpump",
+    "symbol": "PUMPFUN",
+    "launchTime": "1789689073000"
+  },
+  "CT_501:2xecnd2jqtczkyskd9xrm3esbct6mcua611bhn6dtrqw": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "2XeCND2jqTczkySKD9xrM3esbcT6mCuA611bHN6dtrqw",
+    "symbol": "FANS",
+    "launchTime": "1789689064000"
+  },
+  "CT_501:4berexsallyqcpf4o1jtd5eatsy35mxphv594qoek8g9": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "4BERExsALLYQCpF4o1JTD5EaTsY35mxPhv594QoEK8g9",
+    "symbol": "DEX",
+    "launchTime": "1789689025000"
+  },
+  "CT_501:7ta5cneyb4fetywzdjqwznqrqzvqw11m9ngstm59pump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "7ta5CNEYb4fETYwZDjQwznqRqZvQw11m9NGStm59pump",
+    "symbol": "UIN",
+    "launchTime": "1789689013000"
+  },
+  "CT_501:9stblpdygabgge4cn6hsnwqart7fdsauk7nfdh34o7zg": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "9sTbLpdYGabggE4Cn6hsNWqarT7FdsAuK7NfdH34o7zG",
+    "symbol": "MCAT",
+    "launchTime": "1789689002000"
+  },
+  "CT_501:cz1qkafvwspp4emm95v1hvyuqqfedhqgsfkv7cdkdzso": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "CZ1QkafvWSpP4emm95V1hVyuqQfeDhQGsFkV7CdKDzSo",
+    "symbol": "VPN",
+    "launchTime": "1789688919000"
+  },
+  "CT_501:8or2cixnyuiyh86k7nmtejlrfewivih8dvgkqkw11yxz": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "8or2ciXNyUiYH86K7NMTejLrFEWiViH8DvGkQKW11YXZ",
+    "symbol": "YEC",
+    "launchTime": "1789688918000"
+  },
+  "CT_501:cxr6rxcim2ywmfaehxnhgmhltieedh38vfnnjwj3pump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "CXr6rXCiM2ywMFAEhXNHGmHLTiEEDh38VFNnjWj3pump",
+    "symbol": "RIM",
+    "launchTime": "1789688895000"
+  },
+  "CT_501:gqfhot6ufvsdvi33rrnqkl83uojjwjs2zruir7fzpump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "GQfhoT6ufvsdvi33rRnqkL83uoJJWJS2zruir7Fzpump",
+    "symbol": "HUNTERCATT",
+    "launchTime": "1789688890000"
+  },
+  "CT_501:b3fgkb2d49t343ekwwhnjmq32e3k2xm8buxetd3upump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "B3fGKB2d49T343EKwWhnJMq32e3K2XM8BuXEtd3Upump",
+    "symbol": "TODX",
+    "launchTime": "1789688871000"
+  },
+  "CT_501:6xd153annf7wt7swwefohzvc6ki17urgx6f2nkrapump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "6xd153aNnf7WT7swWefohzVc6Ki17uRGx6F2NKRApump",
+    "symbol": "runner",
+    "launchTime": "1789688851000"
+  },
+  "CT_501:8ob5epjepxdnhbbqwrhyh8kqk2sb2muyxygbk6aspump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "8oB5ePjEpxdNHBBQWrhYh8kQK2SB2MUYxYgBk6aSpump",
+    "symbol": "SOLANAGIRL",
+    "launchTime": "1789688833000"
+  },
+  "CT_501:8ej3ntkkhiu8vz7dvnglkstpzqdr2631jqa8z2jvmcsh": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "8EJ3NtKkhiU8vz7dVnGLKSTPZQdr2631jqA8Z2JvmCSH",
+    "symbol": "PAWSINU",
+    "launchTime": "1789688831000"
+  },
+  "CT_501:evtj5ne6shp1lavjv2hebem6haf49bkytlqnogeyng63": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "EVTJ5Ne6sHP1LavJv2HEbem6hAf49bKytLQnogeyng63",
+    "symbol": "INU",
+    "launchTime": "1789688824000"
   },
   "CT_501:f71vs27fhmpzqteh2eqnedncvacyenmjoc9kgpx2rxgu": {
     "chainId": "CT_501",
@@ -4192,19 +4353,33 @@
     "symbol": "LZR4MRK",
     "launchTime": "1789688768000"
   },
-  "CT_501:bpvv9vbedbkpd2pfemqklswryazbfdwpsqfle7scpump": {
+  "CT_501:7wcgwq9bteiqje9ynyzqcrdhbikdzsgaeyxlhgwdpump": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "BPVV9vBedBkpD2pFemQkLSWRyAZbfdWPsQFLe7SCpump",
-    "symbol": "PCART",
-    "launchTime": "1789688698000"
+    "contractAddress": "7WcgwQ9btEiqjE9yNyZQcrDHbikDZsGAEyXLhgwDpump",
+    "symbol": "Peter ",
+    "launchTime": "1789688762000"
   },
-  "CT_501:6rghrzwy9q5c9recea4beosp7jirnns3o1gcmvshpump": {
+  "CT_501:4eaolz9stkwffvc83wk3qrx1zeutqgx2hfubbsbwpump": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "6rghRzWY9q5c9rEcEA4BEosP7JiRnNS3o1GcMvshpump",
-    "symbol": "ONCHAIN",
-    "launchTime": "1789688696000"
+    "contractAddress": "4EAoLZ9STKWffVc83wK3qRX1ZEuTQGX2HFubbSBwpump",
+    "symbol": "WSOS",
+    "launchTime": "1789688747000"
+  },
+  "CT_501:8uwuhdp9efjgjrcsudrnzueyxjlgbtpyylvlfxfk1eqh": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "8uWUHDP9EFJGjrcSUdrnzUEYxJLgBTpYyLVLFXFk1EqH",
+    "symbol": "INUVESTOR",
+    "launchTime": "1789688731000"
+  },
+  "CT_501:bkm2i3d1zg2f1enygdmzuqhjkdovwyamxgfnmkjtpump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "Bkm2i3D1ZG2F1enYgDMZuqHJKDovwyAMxGFNMKJTpump",
+    "symbol": "balloon",
+    "launchTime": "1789688702000"
   },
   "CT_501:864ok6yi6srdgyuepfl3cksrmna6brkiv4jepce8z11a": {
     "chainId": "CT_501",
@@ -4219,6 +4394,13 @@
     "contractAddress": "DnDjsFDZTkK6UrhXqkFQAzC8uchv75hStVBgcB2wjupx",
     "symbol": "JEWPETER",
     "launchTime": "1789688668000"
+  },
+  "CT_501:29qqxhtwm9ubpjddoctzwzrytsxof6jx81eemurx2mva": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "29QQXHTwm9UbPjdDoCTzWZRyTSXof6Jx81Eemurx2MvA",
+    "symbol": "Gary",
+    "launchTime": "1789688656000"
   },
   "CT_501:fsyd6avgtyztknvmavrtappngfcj2zvhvgiungjqzkqd": {
     "chainId": "CT_501",
@@ -4241,6 +4423,13 @@
     "symbol": "pumpmoney",
     "launchTime": "1789688601000"
   },
+  "CT_501:7hzpsmsyajswq2efv8nrt9gfufmgsjuvet6howh3rpb3": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "7HZpsMSyaJSWq2efv8Nrt9GfuFMgSJuVeT6hoWh3rpB3",
+    "symbol": "JEWPETER",
+    "launchTime": "1789688593000"
+  },
   "CT_501:fqrt5nyxhswcryqdyinakh4awovwqcmxjmsbvyehpump": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -4255,12 +4444,12 @@
     "symbol": "YEC",
     "launchTime": "1789688537000"
   },
-  "CT_501:gp5qmyfstfqpjdau57nzundbu227patjd881xedxpump": {
+  "CT_501:6hcgxc6xnqptrbfkyygoiuxeejci9t34dypaznunpump": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "Gp5qMyfStfqpjdau57NzuNDBU227PAtJd881xedXpump",
-    "symbol": "MR",
-    "launchTime": "1789688521000"
+    "contractAddress": "6HCgxc6XnqPTrbFKyYgoiuXeeJci9T34DypaZnunpump",
+    "symbol": "CHARIZARD",
+    "launchTime": "1789688498000"
   },
   "CT_501:gi9utrvtbwzqf9rrjxxskobmpdurqd1dvt9uh6papump": {
     "chainId": "CT_501",
@@ -4269,6 +4458,13 @@
     "symbol": "ZCHAN",
     "launchTime": "1789688484000"
   },
+  "CT_501:7aek4x5jnrxhkzm9tk3fwrpt49uear9dqsitx5ycpump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "7aEk4x5jNRXHkZM9tk3fWrPt49uear9dQSitx5YCpump",
+    "symbol": "Harambe",
+    "launchTime": "1789688480000"
+  },
   "CT_501:5qqgguvuqhisvfzi9yl7th66yizvryearl5keefmpump": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -4276,33 +4472,12 @@
     "symbol": "MEOW",
     "launchTime": "1789688426000"
   },
-  "CT_501:6fuavyuyql4ekacl5bc2wko7zmzifjp1s1glsvrapump": {
+  "CT_501:abmpncqsywqivt9x2l7aryqfsfqwaqkk3pm9xmytqqpm": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "6fuavyuYQL4EkacL5bc2wko7zMzifjP1s1GLsvrapump",
-    "symbol": "WMAX",
-    "launchTime": "1789688423000"
-  },
-  "CT_501:glvmha24snfr85xa7e5ymy8h2kcmagmrwpphbyljqr7a": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "GLVmha24SnFR85Xa7E5yMy8h2kCMaGMRwpPHbYLjQR7A",
-    "symbol": "CCAT",
-    "launchTime": "1789688418000"
-  },
-  "CT_501:gfsrvyunblmhp9umrnrrve2kzmjmreemnuwtiimcpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "GFSrvYunbLmHP9UMrNrRvE2kZmJMreemnUwtiiMcpump",
-    "symbol": "LimeWire",
-    "launchTime": "1789688395000"
-  },
-  "CT_501:8dc4zcv3aragb6uaxninekxr9pwcveuvcnes7ffd2xw7": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "8dC4Zcv3aRAgb6uAxnineKXr9pwcVEuvcnES7ffD2xW7",
-    "symbol": "BETECE",
-    "launchTime": "1789688392000"
+    "contractAddress": "ABmpncqsYwqiVt9x2L7ArYQFsfQwAqkK3pm9xMyTQQPm",
+    "symbol": "YEC",
+    "launchTime": "1789688411000"
   },
   "CT_501:4rav8lee4shxps9fqcgqgm5qkk5fvna4jwkf7fjupump": {
     "chainId": "CT_501",
@@ -4318,20 +4493,6 @@
     "symbol": "BURNCOIN",
     "launchTime": "1789688340000"
   },
-  "CT_501:gww7vvglkysvy4ss2ps6whm5g6za1a5g6ufawhdmgx13": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "GwW7VvgLkysVy4ss2pS6Whm5g6za1a5G6UFawhDmGx13",
-    "symbol": "MAYCOTTE",
-    "launchTime": "1789688338000"
-  },
-  "CT_501:cdcsvqhggaztvu4at7vhcn3cwsprbxcp1rp1tjhhpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "CDCSVqhggAZtvu4at7vHcN3CWSPrbxcp1rp1tJhHpump",
-    "symbol": "Magikarp",
-    "launchTime": "1789688333000"
-  },
   "CT_501:8ktmfrruqzxmwhbe3nrrdqdfexvsldjbkcnufptopump": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -4345,13 +4506,6 @@
     "contractAddress": "65ZXDtYvGbqQBNkLHeZ8B7UTNgwZkEY6J2NttmbxwwLa",
     "symbol": "BULL",
     "launchTime": "1789688303000"
-  },
-  "CT_501:9j3gkt1iibpzavps3t5s5nvw7u3ud3r7mezrgtjmjsnm": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "9j3gkt1iiBpZaVps3t5S5NVw7U3UD3r7mEZrgtJMJSnM",
-    "symbol": "/free",
-    "launchTime": "1789688300000"
   },
   "CT_501:dahmyejvnnbaujwr9j6ds8nxm4q4tjjhafwv3sfmo78d": {
     "chainId": "CT_501",
@@ -4381,47 +4535,12 @@
     "symbol": "OnlyCat",
     "launchTime": "1789688222000"
   },
-  "CT_501:5qrekjyjrrog5yybb1lbqvs3vq1gv7vgfpdacrtkstnk": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "5qrekJyjRrog5yYbb1LBQVS3vQ1Gv7vGfpdaCrTKSTNK",
-    "symbol": "privacy",
-    "launchTime": "1789688217000"
-  },
-  "CT_501:d6g3mkdputqq4wiffoc7zhbr8kqtpkdq6pgvzsjzsn28": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "D6g3mkDPuTQq4WiFFoC7zhbr8kQtPkDq6PgVZSJzsN28",
-    "symbol": "WDOWIAK",
-    "launchTime": "1789688209000"
-  },
   "CT_501:2mrqb6ap1yzma1dhu9o7vm9su7xssccykwkjkbkxpump": {
     "chainId": "CT_501",
     "chainName": "Solana",
     "contractAddress": "2mRqb6AP1yZMa1DhU9o7vM9SU7XsSCcYKwkJKBKxpump",
     "symbol": "GLAD",
     "launchTime": "1789688188000"
-  },
-  "CT_501:4gx6nvvvbwcsv3dex4uvuas8ecc57xm1thktjwuupump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "4Gx6nVVVbWCsv3Dex4UVUAs8ecc57xm1THktjWuupump",
-    "symbol": "Garfield ",
-    "launchTime": "1789688182000"
-  },
-  "CT_501:8jehs4u12utfcmfeqvz16jfnnf4f5zvzwlt1zykb4tth": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "8jEhs4u12UTfcmfEqVZ16jFNNf4f5ZvZWLT1ZYkB4TTh",
-    "symbol": "SCAT",
-    "launchTime": "1789688178000"
-  },
-  "CT_501:dxwgwhajeytyuvjizrurrv1tvchppmvs9omyshcspump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "DXWgWhAjeyTyUvjiZruRRV1TVcHpPmvs9omyShCspump",
-    "symbol": "PF",
-    "launchTime": "1789688155000"
   },
   "CT_501:7dujytbudoymj9gnn5m3dtqflnnzu3xvzw72vrxrpump": {
     "chainId": "CT_501",
@@ -4430,13 +4549,6 @@
     "symbol": "COIN",
     "launchTime": "1789688149000"
   },
-  "CT_501:9qtyan2u9gbasdhgqvhjz2ubnweqmv1axft6hp4ttcyw": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "9QTyan2u9gbaSdhgQvhJZ2uBNwEqMv1aXft6hp4TTcYW",
-    "symbol": "PCAT",
-    "launchTime": "1789688142000"
-  },
   "CT_501:aw3m11msms9kmtmhxjbsetmds4p7pc4dc9wkkinz5kbz": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -4444,19 +4556,19 @@
     "symbol": "WKC",
     "launchTime": "1789688130000"
   },
+  "CT_501:69zzpp9xc7ij5v1gnidzow7uzlcy2ewnnkpsokdsvlzt": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "69ZZPp9xc7iJ5v1gnidZow7uzLcY2EWnnKPsokdsVLzT",
+    "symbol": "BCAT",
+    "launchTime": "1789688127000"
+  },
   "CT_501:3ihj45yqrlgugq39dcpmecdhv34m41dfyvnc3rzhhb42": {
     "chainId": "CT_501",
     "chainName": "Solana",
     "contractAddress": "3ihJ45YqrLGugq39dCPmeCDhv34m41dfYVnC3rzhhb42",
     "symbol": "CROSSFIT",
     "launchTime": "1789688109000"
-  },
-  "CT_501:79rjxkx2s6cf11br4qtxdjj1q23x2i6rsbtebpril5ks": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "79RjXKx2s6Cf11br4qTXDjj1Q23X2i6rsbtebPRiL5KS",
-    "symbol": "MCD",
-    "launchTime": "1789688105000"
   },
   "CT_501:6o5qtmcmfmwnyirp9qmunq2dhom8mydb7caatvzapump": {
     "chainId": "CT_501",
@@ -4479,13 +4591,6 @@
     "symbol": "OPOP",
     "launchTime": "1789688056000"
   },
-  "CT_501:ckjwuswazyrfqfwddqg1sbykcshnv11zucinqeemmbnz": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "CKjwUsWAZYrfQfWddQG1SbyKcSHnV11ZucinqEeMmbNZ",
-    "symbol": "ZITBOY",
-    "launchTime": "1789688037000"
-  },
   "CT_501:bzyiu6sr57mevsypyo1teunjxwmg2opreh8makxpei1f": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -4499,13 +4604,6 @@
     "contractAddress": "2qyksRGpGaacfCwa4L7HK9GEJtME8yKhTa4RnRHFpump",
     "symbol": "MEME COIN",
     "launchTime": "1789688035000"
-  },
-  "CT_501:69vnn7b1begebki13azbkvktv2pke9dhfbzzfjwbpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "69vNn7b1bEgebKi13aZbkvkTV2pke9dHfbZZfJwBpump",
-    "symbol": "MILF",
-    "launchTime": "1789688006000"
   },
   "CT_501:dksqzbbuuiyf5qp8f7axrwqzrteb2j7uzs2t3p84dm5h": {
     "chainId": "CT_501",
@@ -4521,19 +4619,12 @@
     "symbol": "NFT",
     "launchTime": "1789687987000"
   },
-  "CT_501:7hmqkrjcuzz7uvzvbxvfx3kurec8to4fpj1jmtjnvhae": {
+  "CT_501:hhrungcfgnq5jvwcuzwcnrm6szxmbpg7brqjudbmpump": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "7hmqkrJcUzz7UVZvbXvFX3KurEc8To4FPj1jmtJNvhAe",
-    "symbol": "LONG",
+    "contractAddress": "HHRuNgCfgNQ5jVWcuzWcnrm6sZXmbpg7BrQjUDbMpump",
+    "symbol": "TogiTok",
     "launchTime": "1789687973000"
-  },
-  "CT_501:bdpddkscegza3ffkwfd3sy41sremr4kgx41fhjuhv8cq": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "BdPDdKsCEgZA3FfkwfD3Sy41sReMR4kGx41FhJUhv8cQ",
-    "symbol": "BOTNET",
-    "launchTime": "1789687968000"
   },
   "CT_501:fe2p5jhe6nk3pxadqukwuwmbprrz9knxw9z3pd2pump": {
     "chainId": "CT_501",
@@ -4549,20 +4640,6 @@
     "symbol": "TOE",
     "launchTime": "1789687927000"
   },
-  "CT_501:7mdzmtspcbcj7phahkpzv7nlml1r6ayp6bbab1oupump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "7mDZMTsPCbcj7pHaHKpzV7NLmL1R6aYP6bBab1oUpump",
-    "symbol": "LCAT",
-    "launchTime": "1789687912000"
-  },
-  "CT_501:jcknyk2gkna4wyjxupep4baxd8smcjm6byg3vsepstnk": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "JCknyk2GkNa4wYjXUPEp4BAXd8SmCJM6byG3VSepSTNK",
-    "symbol": "Anonymouse",
-    "launchTime": "1789687881000"
-  },
   "CT_501:62nd6byuqa6t8zw6s8pa7bexg2rv94nz3gx7nf73pump": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -4577,13 +4654,6 @@
     "symbol": "PUT",
     "launchTime": "1789687871000"
   },
-  "CT_501:f9p3zw9cyuydjn6nygmzsjxlxfsgk57aaxg8xwpdf9ci": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "F9P3ZW9cYUyDJn6nyGMZsJxLXFSgK57aaxG8XWpdF9Ci",
-    "symbol": "DEX",
-    "launchTime": "1789687860000"
-  },
   "CT_501:b2bdshee5d5cvovlmptvauugsymewruy5htx9o9dhbdz": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -4591,12 +4661,12 @@
     "symbol": "pillheads",
     "launchTime": "1789687845000"
   },
-  "CT_501:8ejfyvwbmiwjeuuk8fkqfmdine6keczzkmgf3kjpt64j": {
+  "CT_501:8njnqqqlbaprnefkbf86lbzqkrkckzi2xypiq4unjgng": {
     "chainId": "CT_501",
     "chainName": "Solana",
-    "contractAddress": "8ejfyvWbMiWJEuUk8fkQfMDiNe6kEcZzKmGF3KjpT64j",
-    "symbol": "WKC",
-    "launchTime": "1789687811000"
+    "contractAddress": "8NjnQqqLbAPRNeFkBf86LBZQkRKCkZi2XYPiq4unjGng",
+    "symbol": "paid",
+    "launchTime": "1789687840000"
   },
   "CT_501:4zr82b2berw5y48cekfqqafnookitwmdkax18qk1mjdq": {
     "chainId": "CT_501",
@@ -4611,13 +4681,6 @@
     "contractAddress": "53dpAK1eBesYG6nwPDbsHGZgWJNr3cFA28mQ2Fn6pump",
     "symbol": "TradeWar",
     "launchTime": "1789687742000"
-  },
-  "CT_501:752ty1pgdng5kdpmqolqsicx5totc7hlj6hhhhdwpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "752ty1pgdNg5KdPMQoLqsicX5totC7hLj6HhHhDwpump",
-    "symbol": "MARIOCRIB",
-    "launchTime": "1789687719000"
   },
   "CT_501:htqqyr1phywe7g6ypqvtyfuh3zasm2bnse3jjr3zzrvr": {
     "chainId": "CT_501",
@@ -4675,6 +4738,13 @@
     "symbol": "AOS",
     "launchTime": "1789687437000"
   },
+  "CT_501:8cxcubbm2cy4z6ezjzr1hjgh4qztjjcthou62fcopump": {
+    "chainId": "CT_501",
+    "chainName": "Solana",
+    "contractAddress": "8CxcUbBm2cY4z6ezjzr1HJgH4QZTJjcthou62FCopump",
+    "symbol": "NOP",
+    "launchTime": "1789687405000"
+  },
   "CT_501:dyf18qbqbpxcryt2df61mp2xtfigc3jdny5kwf2upump": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -4702,13 +4772,6 @@
     "contractAddress": "CVCgxGvsBWWHA15MxNq4zttPKfgFbCnmKDxqs75Dpump",
     "symbol": "BTCINU",
     "launchTime": "1789687261000"
-  },
-  "CT_501:8btpbtkbvfpfaikzzx2r44rtmu8ozroqz9vts73kpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "8BtpBTkBVfPFaiKzZx2R44RtMu8ozroQz9vTs73kpump",
-    "symbol": "LITTER",
-    "launchTime": "1789687233000"
   },
   "CT_501:4wh2wyzty5prqau8ogdj3vhfbqfykubyyiraryehpump": {
     "chainId": "CT_501",
@@ -4765,13 +4828,6 @@
     "contractAddress": "9xMoVLF3m2RAEHFA1UVK3qxypmtuQ91PtCRAudXwspot",
     "symbol": "SPOT",
     "launchTime": "1789686953000"
-  },
-  "CT_501:6jggqpcrb5aidbm6hqgqnjc7xl1kbaz2ts1nq9eypump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "6jggqPCrB5AiDBm6HQGqNJc7XL1KBAz2Ts1nQ9EYpump",
-    "symbol": "GAYDAWG",
-    "launchTime": "1789686894000"
   },
   "CT_501:drqsc1clbcxnyx9wbckxg7zr48xoyudhu1a6gjkapump": {
     "chainId": "CT_501",
@@ -4934,13 +4990,6 @@
     "symbol": "MEMEBOTTOM",
     "launchTime": "1789685691000"
   },
-  "CT_501:a94wv2ujfvwkcebzfbux9fanfe7px9xc7camzhoepump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "A94wV2UJFvWkCeBzfbUx9FANFe7px9xc7cAmzhoEpump",
-    "symbol": "PCAT",
-    "launchTime": "1789685505000"
-  },
   "CT_501:9djscgskb71hssj3gf3wdylmhktg1ycto6zem9dbpump": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -5024,13 +5073,6 @@
     "contractAddress": "32dDUMfRbyTbJZ3tz4TyGiRVykMZV2PVEyjM8S7nMtXE",
     "symbol": "Patryczek",
     "launchTime": "1789684988000"
-  },
-  "CT_501:2y3zjuedyml2zwegluddqdqhqqs1iyet7b8nr9ttpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "2Y3zJuEdyML2zWegLuddQdQhQqS1iyET7b8nr9tTpump",
-    "symbol": "wifedat",
-    "launchTime": "1789684950000"
   },
   "CT_501:41wnpcywhqqbeadec1dy2ujzpqce1sm1ttiroqhwpump": {
     "chainId": "CT_501",
@@ -5130,13 +5172,6 @@
     "symbol": "ROBOTRON",
     "launchTime": "1789684216000"
   },
-  "CT_501:d9asnuqxzq6shj9wnb3wbpabhl7qyank9crenydpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "d9aSnUqxZQ6shj9WnB3WbpaBhL7QYank9CrEnYDpump",
-    "symbol": "GOGO",
-    "launchTime": "1789684158000"
-  },
   "CT_501:hrb6xqvcqpgmebv7u61qeyshchl3sobu8cmgmejybunn": {
     "chainId": "CT_501",
     "chainName": "Solana",
@@ -5213,117 +5248,5 @@
     "contractAddress": "EUGL4KzZ8fYsuFwQeeKQctKjQ93tVACxTC8ip5p54cr5",
     "symbol": "SAMIR",
     "launchTime": "1789683588000"
-  },
-  "CT_501:dcatuyabf3oixfetyzakk3sydjphhqbzhwpnia85pump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "DCatUyaBf3oiXFeTyZaKK3SYdJPhHqbzhWPNia85pump",
-    "symbol": "entry",
-    "launchTime": "1789683461000"
-  },
-  "CT_501:8edqf2yhp8bekgcjtqjj2kit7l5jkcvg6mcdu8hxstnk": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "8EDQF2yHP8beKGCjtqjJ2kit7L5jKCVG6MCdu8HXSTNK",
-    "symbol": "ABE",
-    "launchTime": "1789683457000"
-  },
-  "CT_501:9so1hkgiqathryash3nk9huduwdmrtyk3fn3rt3dpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "9so1hKgiqAthrYasH3NK9HUDuwdmRtYK3Fn3Rt3Dpump",
-    "symbol": "CAC",
-    "launchTime": "1789683376000"
-  },
-  "CT_501:mjpzrau2cjkmrcbu4eevqaddrwna37bjpgchmqyznue": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "mjpzrAU2cjKmrcbu4EevqaDdrwna37BJpgChMQyznue",
-    "symbol": "Avenue",
-    "launchTime": "1789683328000"
-  },
-  "CT_501:aiz4unjbqptghfqf5w4mtm7ckdqcjpnfxnw9qrepmzvs": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "AiZ4UNjbQPtGhfQF5w4Mtm7CKDQCJPNfXnW9qrePMzVS",
-    "symbol": "SOLMASTER",
-    "launchTime": "1789683306000"
-  },
-  "CT_501:etvrprc9wt5wbjvdrozm5ud2hyydaxkn2f5datzwpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "EtvRpRc9WT5WbJVdRozm5uD2hyYDAxKn2F5datZWpump",
-    "symbol": "CLONG",
-    "launchTime": "1789683297000"
-  },
-  "CT_501:dccbwgjcjldjydviyj1yq5qtw1kdkfcuwqpm142jpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "DCcBWGJcjLDjydviYj1YQ5qtw1kDKFCuwqPm142jpump",
-    "symbol": "Verity",
-    "launchTime": "1789683256000"
-  },
-  "CT_501:dyj3ufyjkygtfbkv8xq5vd3tvp4jpdymjyvxu5usqrsi": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "DYj3ufYJKygTfbkV8xq5vD3Tvp4JPdYmjYvXU5USQrsi",
-    "symbol": "Brez",
-    "launchTime": "1789683214000"
-  },
-  "CT_501:eekcgzttef5ocmu2xserps7pikwpfjm1p7hvrw8aaqom": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "EEKCgztteF5oCmu2xsERpS7PiKWPFJm1P7HvRW8aaqom",
-    "symbol": "KARPLORD",
-    "launchTime": "1789683174000"
-  },
-  "CT_501:d696wyncuo5s94bz8mbjaeywxydjquw9cl4bxejqpump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "D696wYncUo5s94bz8mBjAeyWXYdjquW9CL4bXejQpump",
-    "symbol": "BabyNewCat",
-    "launchTime": "1789683174000"
-  },
-  "CT_501:de2yh2ffvgnzxlw7pejcgrcss7teamqouud7sczyvcpf": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "DE2yH2FFvgNzxLW7PejcGRcSS7tEaMQouuD7sCzYVcpf",
-    "symbol": "ZEZE",
-    "launchTime": "1789683151000"
-  },
-  "CT_501:fll1gubyh4gdvfu3fjdvs4yqd9tnsxr6em4l5nempump": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "FLL1GUByh4gDVfu3FJDvS4YQd9TnSxr6eM4L5neMpump",
-    "symbol": "Roads",
-    "launchTime": "1789683122000"
-  },
-  "CT_501:fxtakrqfs3k3rijnmvw7yfml7fpc1ypyhhyd8c4hjups": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "FXTAKRQfS3k3RijnmVW7YFML7fPc1yPyhhyd8C4Hjups",
-    "symbol": "Catdet",
-    "launchTime": "1789683050000"
-  },
-  "CT_501:5eeig1ktukabq1cfdrzpeczvbdv4kxy2vccenoatqjzy": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "5eEig1KTukABQ1CfDrZpeCzvBDv4KxY2vcCENoAtQJzY",
-    "symbol": "CONVICTION",
-    "launchTime": "1789683049000"
-  },
-  "CT_501:6mdgxmuxgjbk59kjpmwmc5uhmwz3mqgxpbp99waxzgt9": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "6mdGXMuXgJbk59KjpmwMc5uhmwz3MQGXpBP99WAXzgt9",
-    "symbol": "KARPLORD",
-    "launchTime": "1789683021000"
-  },
-  "CT_501:3plrrtg9tvosywefjspfwale8lqedhcd4c5yea7dulk9": {
-    "chainId": "CT_501",
-    "chainName": "Solana",
-    "contractAddress": "3PLrrtg9tVoSyWEFjspfWaLe8LQeDHcD4C5yEa7duLk9",
-    "symbol": "2389",
-    "launchTime": "1789683005000"
   }
 }
