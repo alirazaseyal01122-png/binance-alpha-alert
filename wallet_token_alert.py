@@ -32,30 +32,24 @@ STATE_FILE = "wallet_tokens.json"
 
 
 # =========================================================
-# FILTERS
+# SETTINGS
 # =========================================================
 
-# Supply اب FILTER نہیں ہے۔
-# صرف Telegram message میں دکھایا جائے گا۔
+# نئے ٹوکن کی زیادہ سے زیادہ عمر
+MAX_TOKEN_AGE_MINUTES = 10
 
-MIN_LIQUIDITY = 100_000
-MIN_MARKET_CAP = 500_000
-MIN_HOLDERS = 100
-MIN_VOLUME_24H = 50_000
-
-# صرف گزشتہ 24 گھنٹوں میں launch ہونے والے tokens
-MAX_TOKEN_AGE_HOURS = 24
+# BNB/BSC کے لیے زیادہ سے زیادہ Total Supply
+BNB_MAX_SUPPLY = 600_000_000
 
 
 # =========================================================
 # CHAINS
 # =========================================================
 
+# صرف Ethereum اور BNB/BSC
 CHAINS = {
-    "56": "BSC",
     "1": "Ethereum",
-    "8453": "Base",
-    "CT_501": "Solana"
+    "56": "BNB Chain"
 }
 
 
@@ -109,7 +103,8 @@ def telegram_test():
         "✅ GitHub Action: Working\n"
         "✅ Python: Working\n"
         "✅ Telegram Bot: Connected\n\n"
-        "⚡ Web3 Validator is running.\n"
+        "🌐 Ethereum + BNB Chain Monitor\n"
+        "⏱️ New token age limit: 10 minutes\n"
         "🕐 Manual workflow test successful."
     )
 
@@ -416,7 +411,7 @@ def dt_to_string(dt):
     )
 
 
-def token_age_hours(value):
+def token_age_minutes(value):
 
     dt = parse_timestamp(value)
 
@@ -427,7 +422,7 @@ def token_age_hours(value):
 
     return (
         now - dt
-    ).total_seconds() / 3600
+    ).total_seconds() / 60
 
 
 # =========================================================
@@ -543,17 +538,18 @@ def main():
 
         send_telegram(
             "✅ Binance Web3 Wallet Monitor Started\n\n"
-            f"🌐 Chains: {len(CHAINS)}\n"
-            f"🪙 Existing tokens recorded: "
-            f"{len(current_tokens)}\n\n"
-            "🔒 Filters enabled:\n"
-            "• Launch ≤ 24 hours\n"
-            "• Liquidity ≥ $100K\n"
-            "• Market Cap ≥ $500K\n"
-            "• Holders ≥ 100\n"
-            "• 24h Volume ≥ $50K\n\n"
-            "ℹ️ Total Supply is displayed only "
-            "and is NOT used as a filter.\n\n"
+            "🌐 Chains monitored:\n"
+            "• Ethereum\n"
+            "• BNB Chain\n\n"
+            "⏱️ New token age limit: 10 minutes\n\n"
+            "🔵 Ethereum:\n"
+            "• No supply filter\n"
+            "• No liquidity filter\n"
+            "• No market cap filter\n"
+            "• No holders filter\n"
+            "• No volume filter\n\n"
+            "🟡 BNB Chain:\n"
+            "• Total Supply < 600M\n\n"
             "🚨 Old tokens will NOT be alerted."
         )
 
@@ -623,7 +619,7 @@ def main():
                     "launchTime"
                 )
 
-            age = token_age_hours(
+            age_minutes = token_age_minutes(
                 launch_time
             )
 
@@ -634,7 +630,7 @@ def main():
                 f"{pakistan_time(launch_time)}"
             )
 
-            if age is None:
+            if age_minutes is None:
 
                 print(
                     "SKIPPED: launch time unavailable",
@@ -643,7 +639,7 @@ def main():
 
                 continue
 
-            if age < 0:
+            if age_minutes < 0:
 
                 print(
                     "SKIPPED: future launch time",
@@ -652,12 +648,12 @@ def main():
 
                 continue
 
-            if age > MAX_TOKEN_AGE_HOURS:
+            if age_minutes > MAX_TOKEN_AGE_MINUTES:
 
                 print(
-                    "SKIPPED: old token",
+                    "SKIPPED: token older than 10 minutes",
                     symbol,
-                    f"{age:.2f} hours old"
+                    f"{age_minutes:.2f} minutes old"
                 )
 
                 continue
@@ -665,8 +661,6 @@ def main():
             # =================================================
             # TOTAL SUPPLY
             # =================================================
-            # صرف DISPLAY کے لیے ہے
-            # کوئی SUPPLY FILTER نہیں
 
             total_supply = safe_number(
                 get_value(
@@ -676,8 +670,41 @@ def main():
                 )
             )
 
+            if total_supply is None:
+
+                total_supply = safe_number(
+                    token.get(
+                        "totalSupply"
+                    )
+                )
+
             # =================================================
-            # LIQUIDITY
+            # BNB CHAIN SUPPLY FILTER
+            # =================================================
+
+            if chain_id == "56":
+
+                if total_supply is None:
+
+                    print(
+                        "SKIPPED BNB: supply unavailable",
+                        symbol
+                    )
+
+                    continue
+
+                if total_supply >= BNB_MAX_SUPPLY:
+
+                    print(
+                        "SKIPPED BNB: supply >= 600M",
+                        symbol,
+                        format_supply(total_supply)
+                    )
+
+                    continue
+
+            # =================================================
+            # OPTIONAL INFORMATION
             # =================================================
 
             liquidity = safe_number(
@@ -687,36 +714,6 @@ def main():
                 )
             )
 
-            if liquidity is None:
-
-                liquidity = safe_number(
-                    token.get(
-                        "liquidity"
-                    )
-                )
-
-            if liquidity is None:
-
-                print(
-                    "SKIPPED: liquidity unavailable",
-                    symbol
-                )
-
-                continue
-
-            if liquidity < MIN_LIQUIDITY:
-
-                print(
-                    "SKIPPED: liquidity too low",
-                    symbol
-                )
-
-                continue
-
-            # =================================================
-            # MARKET CAP
-            # =================================================
-
             market_cap = safe_number(
                 get_value(
                     dynamic,
@@ -724,74 +721,6 @@ def main():
                     "market_cap"
                 )
             )
-
-            if market_cap is None:
-
-                market_cap = safe_number(
-                    token.get(
-                        "marketCap"
-                    )
-                )
-
-            if market_cap is None:
-
-                print(
-                    "SKIPPED: market cap unavailable",
-                    symbol
-                )
-
-                continue
-
-            if market_cap < MIN_MARKET_CAP:
-
-                print(
-                    "SKIPPED: market cap too low",
-                    symbol
-                )
-
-                continue
-
-            # =================================================
-            # HOLDERS
-            # =================================================
-
-            holders = get_value(
-                dynamic,
-                "holders",
-                "holderCount"
-            )
-
-            if holders is None:
-
-                holders = token.get(
-                    "holders"
-                )
-
-            holders = safe_number(
-                holders
-            )
-
-            if holders is None:
-
-                print(
-                    "SKIPPED: holders unavailable",
-                    symbol
-                )
-
-                continue
-
-            if holders < MIN_HOLDERS:
-
-                print(
-                    "SKIPPED: holders too low",
-                    symbol
-                )
-
-                continue
-
-            # =================================================
-            # 24H VOLUME
-            # =================================================
 
             volume_24h = safe_number(
                 get_value(
@@ -801,50 +730,18 @@ def main():
                 )
             )
 
-            if volume_24h is None:
-
-                volume_24h = safe_number(
-                    token.get(
-                        "volume24h"
-                    )
+            holders = safe_number(
+                get_value(
+                    dynamic,
+                    "holders",
+                    "holderCount"
                 )
-
-            if volume_24h is None:
-
-                print(
-                    "SKIPPED: volume unavailable",
-                    symbol
-                )
-
-                continue
-
-            if volume_24h < MIN_VOLUME_24H:
-
-                print(
-                    "SKIPPED: volume too low",
-                    symbol
-                )
-
-                continue
-
-            # =================================================
-            # PRICE
-            # =================================================
+            )
 
             price = get_value(
                 dynamic,
                 "price"
             )
-
-            if price is None:
-
-                price = token.get(
-                    "price"
-                )
-
-            # =================================================
-            # CIRCULATING SUPPLY
-            # =================================================
 
             circulating_supply = safe_number(
                 get_value(
@@ -862,9 +759,35 @@ def main():
                 launch_time
             )
 
+            if chain_id == "1":
+
+                title = (
+                    "🔵 NEW ETHEREUM BINANCE WEB3 TOKEN"
+                )
+
+                filter_text = (
+                    "✅ Ethereum token\n"
+                    "✅ No supply filter\n"
+                    "✅ No liquidity filter\n"
+                    "✅ No market cap filter\n"
+                    "✅ No holders filter\n"
+                    "✅ No volume filter"
+                )
+
+            else:
+
+                title = (
+                    "🟡 NEW BNB CHAIN BINANCE WEB3 TOKEN"
+                )
+
+                filter_text = (
+                    "✅ BNB Supply < 600M\n"
+                    "✅ Launch age ≤ 10 minutes"
+                )
+
             message_lines = [
 
-                "🟢 NEW QUALIFIED BINANCE WEB3 TOKEN",
+                title,
                 "",
 
                 f"🪙 Symbol: {symbol}",
@@ -890,14 +813,18 @@ def main():
                 "📈 24h Volume: "
                 f"{format_money(volume_24h)}",
 
-                f"👥 Holders: {int(holders)}",
+                (
+                    f"👥 Holders: {int(holders)}"
+                    if holders is not None
+                    else "👥 Holders: N/A"
+                ),
 
                 "",
 
                 "⏰ Launch Time:",
                 launch_time_text,
 
-                f"🕐 Age: {age:.1f} hours",
+                f"🕐 Age: {age_minutes:.1f} minutes",
 
                 "",
 
@@ -906,13 +833,7 @@ def main():
 
                 "",
 
-                "✅ Liquidity ≥ $100K",
-                "✅ Market Cap ≥ $500K",
-                "✅ Holders ≥ 100",
-                "✅ 24h Volume ≥ $50K",
-                "✅ Launch ≤ 24 hours",
-
-                "ℹ️ Supply صرف معلومات کے لیے ہے۔",
+                filter_text,
 
                 "",
 
@@ -935,7 +856,7 @@ def main():
                 )
 
                 print(
-                    "QUALIFIED ALERT SENT:",
+                    "ALERT SENT:",
                     symbol,
                     chain_name
                 )
