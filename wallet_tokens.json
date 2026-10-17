@@ -1,10 +1,24 @@
 {
+  "1:0xbb16ad9a288aa20e283bd9f27df1d105f05796f7": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0xbb16ad9a288aa20e283bd9f27df1d105f05796f7",
+    "symbol": "ATOX",
+    "launchTime": "1792254719000"
+  },
   "1:0x922d0ac4404cf457776345bc44b4260e4cca995e": {
     "chainId": "1",
     "chainName": "Ethereum",
     "contractAddress": "0x922d0ac4404cf457776345bc44b4260e4cca995e",
     "symbol": "PRIME",
     "launchTime": "1792232039000"
+  },
+  "1:0x5b1a34bbf2e942450f54f27404519ada8da6e245": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0x5b1a34bbf2e942450f54f27404519ada8da6e245",
+    "symbol": "もずく",
+    "launchTime": "1792231775000"
   },
   "1:0x65489414f36ef5d71b3ab564914df02aaa5d1e7b": {
     "chainId": "1",
@@ -27,6 +41,13 @@
     "symbol": "PRIME",
     "launchTime": "1792214795000"
   },
+  "1:0x15446a3a8b717b66eda5babd94960b9eb574dc0c": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0x15446a3a8b717b66eda5babd94960b9eb574dc0c",
+    "symbol": "POLICE",
+    "launchTime": "1792207811000"
+  },
   "1:0x16040ded12d6580dc71b6b77328362bb9eef6d9f": {
     "chainId": "1",
     "chainName": "Ethereum",
@@ -48,47 +69,12 @@
     "symbol": "Haggle",
     "launchTime": "1792175195000"
   },
-  "1:0xda2183e5e902ac16f4d643d7ce85c042adfa5f06": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0xda2183e5e902ac16f4d643d7ce85c042adfa5f06",
-    "symbol": "V",
-    "launchTime": "1792173755000"
-  },
-  "1:0x33c5108bd3fe689ebc707e9df0e92d3403cff5e7": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0x33c5108bd3fe689ebc707e9df0e92d3403cff5e7",
-    "symbol": "V",
-    "launchTime": "1792171859000"
-  },
-  "1:0x2bd03dbd31f625f5c301ec780d1ed392105f68f6": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0x2bd03dbd31f625f5c301ec780d1ed392105f68f6",
-    "symbol": "vCoin",
-    "launchTime": "1792171787000"
-  },
   "1:0x9e76d010c692eee8abcf9d07290e25a8e688fbc5": {
     "chainId": "1",
     "chainName": "Ethereum",
     "contractAddress": "0x9e76d010c692eee8abcf9d07290e25a8e688fbc5",
     "symbol": "V",
     "launchTime": "1792171655000"
-  },
-  "1:0xd9b98f68d2985183be4f58d8c19cb062f0196a87": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0xd9b98f68d2985183be4f58d8c19cb062f0196a87",
-    "symbol": "WTZ",
-    "launchTime": "1792171175000"
-  },
-  "1:0x70c54aceeee4dc0c2ffa348e1ce5179a035456fc": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0x70c54aceeee4dc0c2ffa348e1ce5179a035456fc",
-    "symbol": "IMA",
-    "launchTime": "1792170659000"
   },
   "1:0x6a967dbea60ca2050eb629551eef63d21cacf5d5": {
     "chainId": "1",
@@ -104,26 +90,12 @@
     "symbol": "BIRDIE",
     "launchTime": "1792168847000"
   },
-  "1:0xee8bf88a8a9e2e6f8e2d4ccded06fe81d9c49b43": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0xee8bf88a8a9e2e6f8e2d4ccded06fe81d9c49b43",
-    "symbol": "DUO",
-    "launchTime": "1792164599000"
-  },
   "1:0x69f0b2a3f690acd73cf9fe631a6aa9f203a6529f": {
     "chainId": "1",
     "chainName": "Ethereum",
     "contractAddress": "0x69f0b2a3f690acd73cf9fe631a6aa9f203a6529f",
     "symbol": "KEEL",
     "launchTime": "1792156727000"
-  },
-  "1:0x0e2d39c62dd3a3bdc05d1d151ff92fc5c9df90a7": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0x0e2d39c62dd3a3bdc05d1d151ff92fc5c9df90a7",
-    "symbol": "QBT",
-    "launchTime": "1792103459000"
   },
   "1:0xd93e54e9b4bd5add9fc9c1300e15922f0f6cfd4e": {
     "chainId": "1",
@@ -138,20 +110,6 @@
     "contractAddress": "0xe604c8bd3a2abd6d43441ba498bd7fde4f320f2c",
     "symbol": "QMLN",
     "launchTime": "1792072619000"
-  },
-  "1:0x72321bcb82039ff421b55a671e4e9d28b8cad53f": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0x72321bcb82039ff421b55a671e4e9d28b8cad53f",
-    "symbol": "brownies",
-    "launchTime": "1792019411000"
-  },
-  "1:0xd946fefbdedf6086afba72d91c9a10f0b3fb8eba": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0xd946fefbdedf6086afba72d91c9a10f0b3fb8eba",
-    "symbol": "DUEL",
-    "launchTime": "1792015307000"
   },
   "1:0xe7802782ac7679b4ff0e7106b3230adfef251688": {
     "chainId": "1",
@@ -293,13 +251,6 @@
     "symbol": "ZC",
     "launchTime": "1790531279000"
   },
-  "1:0x9ddd01dba11cbdc9fdbdd97a1e5243f6a9ca1dbb": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0x9ddd01dba11cbdc9fdbdd97a1e5243f6a9ca1dbb",
-    "symbol": "SNOWMOON",
-    "launchTime": "1790523527000"
-  },
   "1:0xbb399b4a6557d44d58c626bce5346ad2f8fe9844": {
     "chainId": "1",
     "chainName": "Ethereum",
@@ -327,13 +278,6 @@
     "contractAddress": "0xfe99b2fe66c7725ce30730010a864740e7c39b26",
     "symbol": "CONDO",
     "launchTime": "1790035571000"
-  },
-  "1:0xa5b388d516b45962b2256171d65ab9517260d2a6": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0xa5b388d516b45962b2256171d65ab9517260d2a6",
-    "symbol": "SI",
-    "launchTime": "1790005655000"
   },
   "1:0x41a82bc1b383cc457251f639b566575c3d9b8ff7": {
     "chainId": "1",
@@ -411,13 +355,6 @@
     "contractAddress": "0x5ab3d4c385b400f3abb49e80de2faf6a88a7b691",
     "symbol": "FLOCK",
     "launchTime": "1786379867000"
-  },
-  "1:0xeb7a9ad524ca0bcad732e971339990d112c2002c": {
-    "chainId": "1",
-    "chainName": "Ethereum",
-    "contractAddress": "0xeb7a9ad524ca0bcad732e971339990d112c2002c",
-    "symbol": "EMT",
-    "launchTime": "1786378535000"
   },
   "1:0x951f086a127e280724fd93ccc543f65065afeb5e": {
     "chainId": "1",
@@ -909,6 +846,13 @@
     "symbol": "EDEN",
     "launchTime": "1759163495000"
   },
+  "1:0xfa1c09fc8b491b6a4d3ff53a10cad29381b3f949": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0xfa1c09fc8b491b6a4d3ff53a10cad29381b3f949",
+    "symbol": "FF",
+    "launchTime": "1758993983000"
+  },
   "1:0xda7ad9dea9397cffddae2f8a052b82f1484252b3": {
     "chainId": "1",
     "chainName": "Ethereum",
@@ -916,12 +860,12 @@
     "symbol": "RIVER",
     "launchTime": "1758751883000"
   },
-  "1:0xf72ae3e0da743033abd7a407557d684c1ae66aed": {
+  "1:0xf0db65d17e30a966c2ae6a21f6bba71cea6e9754": {
     "chainId": "1",
     "chainName": "Ethereum",
-    "contractAddress": "0xf72ae3e0da743033abd7a407557d684c1ae66aed",
-    "symbol": "XL1",
-    "launchTime": "1758053507000"
+    "contractAddress": "0xf0db65d17e30a966c2ae6a21f6bba71cea6e9754",
+    "symbol": "BARD",
+    "launchTime": "1758149675000"
   },
   "1:0x000006c2a22ff4a44ff1f5d0f2ed65f781f55555": {
     "chainId": "1",
@@ -1146,6 +1090,13 @@
     "contractAddress": "0xe343167631d89b6ffc58b88d6b7fb0228795491d",
     "symbol": "USDG",
     "launchTime": "1750135199000"
+  },
+  "1:0x259338656198ec7a76c729514d3cb45dfbf768a1": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0x259338656198ec7a76c729514d3cb45dfbf768a1",
+    "symbol": "RESOLV",
+    "launchTime": "1749557495000"
   },
   "1:0x79d464248516bc6977ca2069ba15d8d1044479d8": {
     "chainId": "1",
@@ -1378,33 +1329,201 @@
     "symbol": "WRBNT",
     "launchTime": "1739351219000"
   },
-  "56:0x770272514e3c26a49106f606ddb70fc719df7777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x770272514e3c26a49106f606ddb70fc719df7777",
-    "symbol": "ケツ",
-    "launchTime": "1792252949000"
+  "1:0xfa2b947eec368f42195f24f36d2af29f7c24cec2": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0xfa2b947eec368f42195f24f36d2af29f7c24cec2",
+    "symbol": "USDf",
+    "launchTime": "1739215415000"
   },
-  "56:0x361c81fee07eba435f5f331dfc62a9352de4fdcf": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x361c81fee07eba435f5f331dfc62a9352de4fdcf",
-    "symbol": "猫咪链",
-    "launchTime": "1792252654000"
+  "1:0xbdf43ecadc5cef51b7d1772f722e40596bc1788b": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0xbdf43ecadc5cef51b7d1772f722e40596bc1788b",
+    "symbol": "SEI",
+    "launchTime": "1739202287000"
   },
-  "56:0x2f8d63ab087d2f105a5a7c3353583a8d05b7f43d": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x2f8d63ab087d2f105a5a7c3353583a8d05b7f43d",
-    "symbol": null,
-    "launchTime": "1792252605000"
+  "1:0xf34960d9d60be18cc1d5afc1a6f012a723a28811": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0xf34960d9d60be18cc1d5afc1a6f012a723a28811",
+    "symbol": "KCS",
+    "launchTime": "1738550471000"
   },
-  "56:0x87d64e25d4043b14609fd92072f82a91cad87777": {
+  "1:0x0bb217e40f8a5cb79adf04e1aab60e5abd0dfc1e": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0x0bb217e40f8a5cb79adf04e1aab60e5abd0dfc1e",
+    "symbol": "SWFTC",
+    "launchTime": "1737951311000"
+  },
+  "1:0x4dc26fc5854e7648a064a4abd590bbe71724c277": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0x4dc26fc5854e7648a064a4abd590bbe71724c277",
+    "symbol": "ANIME",
+    "launchTime": "1737617315000"
+  },
+  "1:0x4c1746a800d224393fe2470c70a35717ed4ea5f1": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0x4c1746a800d224393fe2470c70a35717ed4ea5f1",
+    "symbol": "PLUME",
+    "launchTime": "1737445043000"
+  },
+  "1:0xb3a0f70c913aa04404bd177be9e20b47613830b6": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0xb3a0f70c913aa04404bd177be9e20b47613830b6",
+    "symbol": "AIB",
+    "launchTime": "1737393407000"
+  },
+  "1:0xa02c49da76a085e4e1ee60a6b920ddbc8db599f4": {
+    "chainId": "1",
+    "chainName": "Ethereum",
+    "contractAddress": "0xa02c49da76a085e4e1ee60a6b920ddbc8db599f4",
+    "symbol": "TREAT",
+    "launchTime": "1736931155000"
+  },
+  "56:0xbe845823fc084fad893d71ca4bd9c400205b8448": {
     "chainId": "56",
     "chainName": "BNB Chain",
-    "contractAddress": "0x87d64e25d4043b14609fd92072f82a91cad87777",
-    "symbol": "burn",
-    "launchTime": "1792252587000"
+    "contractAddress": "0xbe845823fc084fad893d71ca4bd9c400205b8448",
+    "symbol": "币安资本",
+    "launchTime": "1792261177000"
+  },
+  "56:0x5025ca55691da64db0e594035d271215e2447777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0x5025ca55691da64db0e594035d271215e2447777",
+    "symbol": "你好",
+    "launchTime": "1792261118000"
+  },
+  "56:0x8e4d50f307343bbfa2232b5b00332ad2f2137777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0x8e4d50f307343bbfa2232b5b00332ad2f2137777",
+    "symbol": "水上漂机车",
+    "launchTime": "1792261095000"
+  },
+  "56:0xbf90edf2145927961f0faa7c736c5df2bb507777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xbf90edf2145927961f0faa7c736c5df2bb507777",
+    "symbol": "你好",
+    "launchTime": "1792260886000"
+  },
+  "56:0xc27079f8848d18634a2ba537306ebccca0b07777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xc27079f8848d18634a2ba537306ebccca0b07777",
+    "symbol": "张雪水上漂",
+    "launchTime": "1792260830000"
+  },
+  "56:0x680b1155d28339795c5236ce8e983aaa5326ba50": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0x680b1155d28339795c5236ce8e983aaa5326ba50",
+    "symbol": "XMOON",
+    "launchTime": "1792260727000"
+  },
+  "56:0xe57addc330bc637485d31de7fa831b2d16e67777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xe57addc330bc637485d31de7fa831b2d16e67777",
+    "symbol": "Bitchan",
+    "launchTime": "1792260598000"
+  },
+  "56:0x3e109c38ee41e613c7d0d7bffb32188c4d4d7777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0x3e109c38ee41e613c7d0d7bffb32188c4d4d7777",
+    "symbol": "DOPE",
+    "launchTime": "1792260091000"
+  },
+  "56:0xaec82554c35ec6991b22f55bb0f4cec06b3b7777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xaec82554c35ec6991b22f55bb0f4cec06b3b7777",
+    "symbol": "FRANK",
+    "launchTime": "1792259919000"
+  },
+  "56:0xd7942229c821367e2ff9869865c1b6d0fcdb7777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xd7942229c821367e2ff9869865c1b6d0fcdb7777",
+    "symbol": "鲸鱼娘",
+    "launchTime": "1792259716000"
+  },
+  "56:0xd6d7101745a7827d526030d1e7a4f642d3dd7777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xd6d7101745a7827d526030d1e7a4f642d3dd7777",
+    "symbol": ":3",
+    "launchTime": "1792259376000"
+  },
+  "56:0xf17a886aceed17a186451f6d55a70e31754f7777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xf17a886aceed17a186451f6d55a70e31754f7777",
+    "symbol": "蝴蝶借呗",
+    "launchTime": "1792258599000"
+  },
+  "56:0x36d1ae76f5661d804c53e03ec6fac07d20547777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0x36d1ae76f5661d804c53e03ec6fac07d20547777",
+    "symbol": "隐私钱包",
+    "launchTime": "1792258488000"
+  },
+  "56:0xc02b72fcc5f1f1000007abd16bfa8ea021ac7777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xc02b72fcc5f1f1000007abd16bfa8ea021ac7777",
+    "symbol": "chipto",
+    "launchTime": "1792258161000"
+  },
+  "56:0xb03e213127473d6f849e524400d8daaaa1cc7777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xb03e213127473d6f849e524400d8daaaa1cc7777",
+    "symbol": "Lore",
+    "launchTime": "1792258155000"
+  },
+  "56:0xefae928ea36ab957f137987011a5b380af317777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xefae928ea36ab957f137987011a5b380af317777",
+    "symbol": "chipto",
+    "launchTime": "1792258039000"
+  },
+  "56:0xe3c677580abe122b171ab0153a59096fbb607777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xe3c677580abe122b171ab0153a59096fbb607777",
+    "symbol": "你好",
+    "launchTime": "1792257240000"
+  },
+  "56:0x80dffae720e7909873fa9c3d95fcdb2427647777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0x80dffae720e7909873fa9c3d95fcdb2427647777",
+    "symbol": "DOLLAR COIN",
+    "launchTime": "1792257184000"
+  },
+  "56:0xe3027125e89e0f9d99384d5f5b2c86200e077777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0xe3027125e89e0f9d99384d5f5b2c86200e077777",
+    "symbol": "大飞行时代",
+    "launchTime": "1792254108000"
+  },
+  "56:0x5fcf623ff801160e9e6da6d9b5c8fb7af02a7777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0x5fcf623ff801160e9e6da6d9b5c8fb7af02a7777",
+    "symbol": "使命召唤:现代战争4",
+    "launchTime": "1792253922000"
   },
   "56:0xdc6fc25b0e4cb6c03743563172423cf995dc7777": {
     "chainId": "56",
@@ -1413,19 +1532,12 @@
     "symbol": "喷火喵",
     "launchTime": "1792252578000"
   },
-  "56:0xe0c2144c886dcf5d96925e8f23dd0279ac7cf2ca": {
+  "56:0x9ea0924d966864ac94777c6f578e9949f44c7777": {
     "chainId": "56",
     "chainName": "BNB Chain",
-    "contractAddress": "0xe0c2144c886dcf5d96925e8f23dd0279ac7cf2ca",
-    "symbol": "Liberty",
-    "launchTime": "1792252396000"
-  },
-  "56:0xf4037ae140c00f63d7384927f9cb506b20497777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0xf4037ae140c00f63d7384927f9cb506b20497777",
-    "symbol": "万羊呈祥",
-    "launchTime": "1792252113000"
+    "contractAddress": "0x9ea0924d966864ac94777c6f578e9949f44c7777",
+    "symbol": "阿莱夫能飞",
+    "launchTime": "1792251596000"
   },
   "56:0x636b6c14b7853b0d238d17ed4d2b27bc097b7777": {
     "chainId": "56",
@@ -1434,12 +1546,12 @@
     "symbol": "ChatGBT",
     "launchTime": "1792251208000"
   },
-  "56:0x388831f97e10f7416fde1d01105d6d18691c7777": {
+  "56:0x5f8ace20ebaa7d3a57e07bf9461dcbe4f89a7777": {
     "chainId": "56",
     "chainName": "BNB Chain",
-    "contractAddress": "0x388831f97e10f7416fde1d01105d6d18691c7777",
-    "symbol": "TeslaSI矿机",
-    "launchTime": "1792251151000"
+    "contractAddress": "0x5f8ace20ebaa7d3a57e07bf9461dcbe4f89a7777",
+    "symbol": "CZ",
+    "launchTime": "1792251080000"
   },
   "56:0xd6fc6be11a5c20bfddc53db686ee2fa2274d7777": {
     "chainId": "56",
@@ -1447,6 +1559,13 @@
     "contractAddress": "0xd6fc6be11a5c20bfddc53db686ee2fa2274d7777",
     "symbol": "蛋糕",
     "launchTime": "1792250937000"
+  },
+  "56:0x19c4922143569c2111963c883113229c8b8d7777": {
+    "chainId": "56",
+    "chainName": "BNB Chain",
+    "contractAddress": "0x19c4922143569c2111963c883113229c8b8d7777",
+    "symbol": "Flap金狗",
+    "launchTime": "1792250908000"
   },
   "56:0x15c3a19edb6f68a7bf09e7d96388e5c423f77777": {
     "chainId": "56",
@@ -1483,12 +1602,12 @@
     "symbol": "millionaire",
     "launchTime": "1792250647000"
   },
-  "56:0x6869326eede79fdd722467bfda55bfc650dd7777": {
+  "56:0x88f24b8190eb39ec4041dd0a2a8e10a4790d7777": {
     "chainId": "56",
     "chainName": "BNB Chain",
-    "contractAddress": "0x6869326eede79fdd722467bfda55bfc650dd7777",
-    "symbol": "HEYI LIFE",
-    "launchTime": "1792250506000"
+    "contractAddress": "0x88f24b8190eb39ec4041dd0a2a8e10a4790d7777",
+    "symbol": "HY",
+    "launchTime": "1792250356000"
   },
   "56:0x49b7ebe0af6a94998babe0255cf06593f5b07777": {
     "chainId": "56",
@@ -1496,13 +1615,6 @@
     "contractAddress": "0x49b7ebe0af6a94998babe0255cf06593f5b07777",
     "symbol": "CZ",
     "launchTime": "1792250324000"
-  },
-  "56:0x9fa94af3976b284ce7c8188431823a4ba5097777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x9fa94af3976b284ce7c8188431823a4ba5097777",
-    "symbol": "WENFLY",
-    "launchTime": "1792249489000"
   },
   "56:0xb68167510d1f8cd149cb947e0f037e770a4c7777": {
     "chainId": "56",
@@ -1553,26 +1665,12 @@
     "symbol": "X",
     "launchTime": "1792246871000"
   },
-  "56:0x3727306015bd725da532d9a0e740588fa2b07777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x3727306015bd725da532d9a0e740588fa2b07777",
-    "symbol": "何一",
-    "launchTime": "1792246536000"
-  },
   "56:0x3aa1f2b76539d31a55c2e671e82ff78cb1907777": {
     "chainId": "56",
     "chainName": "BNB Chain",
     "contractAddress": "0x3aa1f2b76539d31a55c2e671e82ff78cb1907777",
     "symbol": "币安荣耀",
     "launchTime": "1792246513000"
-  },
-  "56:0x1f4ae51c41f0abb3ffd3cb260a70f65001ff7777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x1f4ae51c41f0abb3ffd3cb260a70f65001ff7777",
-    "symbol": "Starlink",
-    "launchTime": "1792246230000"
   },
   "56:0xe489e1c68f4fe2b1eacae29a3b1be3e02b267777": {
     "chainId": "56",
@@ -1587,20 +1685,6 @@
     "contractAddress": "0x43eca1aceff42feb85f967c9cddf012f331c7777",
     "symbol": "喷火小猫",
     "launchTime": "1792246024000"
-  },
-  "56:0x14372f754a554f943b1a24fb2a8045afc3257777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x14372f754a554f943b1a24fb2a8045afc3257777",
-    "symbol": "BAI",
-    "launchTime": "1792246008000"
-  },
-  "56:0x4f446ef1aee62787e85beed71adee6add2c8d80e": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x4f446ef1aee62787e85beed71adee6add2c8d80e",
-    "symbol": "BCAT",
-    "launchTime": "1792245939000"
   },
   "56:0xf4a4e153da9eea4e4d92dd7d7abb38d1e4607777": {
     "chainId": "56",
@@ -1714,13 +1798,6 @@
     "symbol": "KK",
     "launchTime": "1792242055000"
   },
-  "56:0x996c1fe63f676b7aedf7698bcf44eec11ec77777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x996c1fe63f676b7aedf7698bcf44eec11ec77777",
-    "symbol": "堵燕菁",
-    "launchTime": "1792241955000"
-  },
   "56:0x8ff23f9b7018fa8987784a22ea5117fb49967777": {
     "chainId": "56",
     "chainName": "BNB Chain",
@@ -1763,13 +1840,6 @@
     "symbol": "索拉纳",
     "launchTime": "1792240881000"
   },
-  "56:0xa449b138ce0a21c9fd70152b5cd4282145a37777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0xa449b138ce0a21c9fd70152b5cd4282145a37777",
-    "symbol": "索拉纳",
-    "launchTime": "1792240854000"
-  },
   "56:0xdf27c4e466413392a0062de7b6c13ebb759b7777": {
     "chainId": "56",
     "chainName": "BNB Chain",
@@ -1804,13 +1874,6 @@
     "contractAddress": "0x4dda46c9dd7e794b99eebdcfd3c82bfbd3207777",
     "symbol": "喜羊羊",
     "launchTime": "1792239750000"
-  },
-  "56:0x238c912d9735f30c63a8807ecb1a6e1146ac7777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x238c912d9735f30c63a8807ecb1a6e1146ac7777",
-    "symbol": "Kavantissa",
-    "launchTime": "1792239537000"
   },
   "56:0xd96301bfcd9b7c1b6dcbd890fe8f52a4ff667777": {
     "chainId": "56",
@@ -1902,13 +1965,6 @@
     "contractAddress": "0xb0f1f0fd710a01858ca120ab4e2d6820233e7777",
     "symbol": "X",
     "launchTime": "1792236719000"
-  },
-  "56:0x37c5bd19b10db534b2208597597030d1b3027777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x37c5bd19b10db534b2208597597030d1b3027777",
-    "symbol": "RIGLOOP",
-    "launchTime": "1792236694000"
   },
   "56:0x2640553dc0617f67418b75fe17c3139208027777": {
     "chainId": "56",
@@ -2281,13 +2337,6 @@
     "symbol": "DSBot",
     "launchTime": "1792228284000"
   },
-  "56:0xd7c9fd6fbd9da9d5d5dc00d616362807196e7777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0xd7c9fd6fbd9da9d5d5dc00d616362807196e7777",
-    "symbol": "DSBot",
-    "launchTime": "1792228246000"
-  },
   "56:0x759c0e7333cc38b986524a72f088a648e17a7777": {
     "chainId": "56",
     "chainName": "BNB Chain",
@@ -2351,13 +2400,6 @@
     "symbol": "蝴蝶股票",
     "launchTime": "1792226570000"
   },
-  "56:0x8df5895bd1efcaa2bedd54354097ae5274ac7777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x8df5895bd1efcaa2bedd54354097ae5274ac7777",
-    "symbol": "小博士",
-    "launchTime": "1792226528000"
-  },
   "56:0xfa9591710b91f1ca06f927c4892c0b67ce227777": {
     "chainId": "56",
     "chainName": "BNB Chain",
@@ -2371,13 +2413,6 @@
     "contractAddress": "0xe2a3036c5907677f5d5a9be60bc67cbdbdd37777",
     "symbol": "燃烧火星",
     "launchTime": "1792225831000"
-  },
-  "56:0x4a11d7cfb3f508872c44868c32dfcad19fadffff": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x4a11d7cfb3f508872c44868c32dfcad19fadffff",
-    "symbol": "模因兽",
-    "launchTime": "1792225734000"
   },
   "56:0xfb9a53a6f66612e278b6440ce535961db2357777": {
     "chainId": "56",
@@ -2736,39 +2771,11 @@
     "symbol": "鱼超强",
     "launchTime": "1792209118000"
   },
-  "56:0xb66e58bee4bb00273eb31d4b19b990d1644d7777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0xb66e58bee4bb00273eb31d4b19b990d1644d7777",
-    "symbol": "躺平小猫",
-    "launchTime": "1792208628000"
-  },
   "56:0x53c68fb1839fa31ef5fe8232480d2da8120f7777": {
     "chainId": "56",
     "chainName": "BNB Chain",
     "contractAddress": "0x53c68fb1839fa31ef5fe8232480d2da8120f7777",
     "symbol": "躺平小猫",
     "launchTime": "1792208075000"
-  },
-  "56:0x9f48a3b01a8cd6883de52a2e40593b5a66597777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x9f48a3b01a8cd6883de52a2e40593b5a66597777",
-    "symbol": "熊猫人",
-    "launchTime": "1792207640000"
-  },
-  "56:0xa1f6ca92d85e8ff1ddd680e8b00e0ae7fe577777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0xa1f6ca92d85e8ff1ddd680e8b00e0ae7fe577777",
-    "symbol": "乡间枯瘦雄鸡",
-    "launchTime": "1792207476000"
-  },
-  "56:0x95029c4c0f786488f55a76859728e0735b4a7777": {
-    "chainId": "56",
-    "chainName": "BNB Chain",
-    "contractAddress": "0x95029c4c0f786488f55a76859728e0735b4a7777",
-    "symbol": "CI",
-    "launchTime": "1792206644000"
   }
 }
